@@ -16,3 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route:: get('/pruebas/{nombre?}', function($nombre=null){
+    $texto = '<h2>Texto de la ruta</h2>';
+    $texto .= 'Nombre: '.$nombre;
+    return $texto;
+});
