@@ -1270,6 +1270,53 @@
         ]
     },
     {
+        "name": "laravel/homestead",
+        "version": "v10.8.1",
+        "version_normalized": "10.8.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/laravel/homestead.git",
+            "reference": "489c6942cb9fa7f57231e89c0b01cdedde6f4b47"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/laravel/homestead/zipball/489c6942cb9fa7f57231e89c0b01cdedde6f4b47",
+            "reference": "489c6942cb9fa7f57231e89c0b01cdedde6f4b47",
+            "shasum": ""
+        },
+        "require": {
+            "php": "^7.1",
+            "symfony/console": "~3.0||~4.0||~5.0",
+            "symfony/process": "~3.0||~4.0||~5.0",
+            "symfony/yaml": "~3.0||~4.0||~5.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "^6.0"
+        },
+        "time": "2020-05-23T12:51:56+00:00",
+        "bin": [
+            "bin/homestead"
+        ],
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Laravel\\Homestead\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylor@laravel.com"
+            }
+        ],
+        "description": "A virtual machine for web artisans."
+    },
+    {
         "name": "laravel/tinker",
         "version": "v2.4.0",
         "version_normalized": "2.4.0.0",
@@ -1333,6 +1380,63 @@
             "Tinker",
             "laravel",
             "psysh"
+        ]
+    },
+    {
+        "name": "laravel/ui",
+        "version": "v2.0.3",
+        "version_normalized": "2.0.3.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/laravel/ui.git",
+            "reference": "15368c5328efb7ce94f35ca750acde9b496ab1b1"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/laravel/ui/zipball/15368c5328efb7ce94f35ca750acde9b496ab1b1",
+            "reference": "15368c5328efb7ce94f35ca750acde9b496ab1b1",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/console": "^7.0",
+            "illuminate/filesystem": "^7.0",
+            "illuminate/support": "^7.0",
+            "php": "^7.2.5"
+        },
+        "require-dev": {
+            "mockery/mockery": "^1.0",
+            "phpunit/phpunit": "^8.0"
+        },
+        "time": "2020-04-29T15:06:45+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Laravel\\Ui\\UiServiceProvider"
+                ]
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Laravel\\Ui\\": "src/",
+                "Illuminate\\Foundation\\Auth\\": "auth-backend/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylor@laravel.com"
+            }
+        ],
+        "description": "Laravel UI utilities and presets.",
+        "keywords": [
+            "laravel",
+            "ui"
         ]
     },
     {
@@ -4113,6 +4217,54 @@
         "homepage": "https://symfony.com"
     },
     {
+        "name": "symfony/deprecation-contracts",
+        "version": "v2.1.2",
+        "version_normalized": "2.1.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/deprecation-contracts.git",
+            "reference": "dd99cb3a0aff6cadd2a8d7d7ed72c2161e218337"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/dd99cb3a0aff6cadd2a8d7d7ed72c2161e218337",
+            "reference": "dd99cb3a0aff6cadd2a8d7d7ed72c2161e218337",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=7.1"
+        },
+        "time": "2020-05-27T08:34:37+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.1-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "function.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Nicolas Grekas",
+                "email": "p@tchwork.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "A generic function and convention to trigger deprecation notices",
+        "homepage": "https://symfony.com"
+    },
+    {
         "name": "symfony/error-handler",
         "version": "v5.0.8",
         "version_normalized": "5.0.8.0",
@@ -5338,6 +5490,71 @@
             "debug",
             "dump"
         ]
+    },
+    {
+        "name": "symfony/yaml",
+        "version": "v5.1.0",
+        "version_normalized": "5.1.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/symfony/yaml.git",
+            "reference": "ea342353a3ef4f453809acc4ebc55382231d4d23"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/symfony/yaml/zipball/ea342353a3ef4f453809acc4ebc55382231d4d23",
+            "reference": "ea342353a3ef4f453809acc4ebc55382231d4d23",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=7.2.5",
+            "symfony/deprecation-contracts": "^2.1",
+            "symfony/polyfill-ctype": "~1.8"
+        },
+        "conflict": {
+            "symfony/console": "<4.4"
+        },
+        "require-dev": {
+            "symfony/console": "^4.4|^5.0"
+        },
+        "suggest": {
+            "symfony/console": "For validating YAML files using the lint command"
+        },
+        "time": "2020-05-20T17:43:50+00:00",
+        "bin": [
+            "Resources/bin/yaml-lint"
+        ],
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.1-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Symfony\\Component\\Yaml\\": ""
+            },
+            "exclude-from-classmap": [
+                "/Tests/"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com"
+            },
+            {
+                "name": "Symfony Community",
+                "homepage": "https://symfony.com/contributors"
+            }
+        ],
+        "description": "Symfony Yaml Component",
+        "homepage": "https://symfony.com"
     },
     {
         "name": "theseer/tokenizer",
