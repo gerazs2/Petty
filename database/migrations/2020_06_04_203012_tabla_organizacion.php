@@ -13,7 +13,7 @@ class TablaOrganizacion extends Migration
      */
     public function up()
     {
-        Schema::create('organizacion', function (Blueprint $table) {
+        Schema::create('organizaciones', function (Blueprint $table) {
             $table->id();
             $table->string('nombreOrg', 50);
             $table->string('emailOrg',255)->unique();
@@ -35,6 +35,6 @@ class TablaOrganizacion extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organizacion');
+        Schema::dropIfExists('organizaciones');
     }
 }
