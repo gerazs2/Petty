@@ -18,7 +18,7 @@ class TablaTratamientos extends Migration
             $table->date('fechaTratamiento');
             $table->string('nombreTratamiento');
             $table->text('etiqueta');
-            $table->date('proximoTratamiento');
+            $table->dateTime('proximoTratamiento');
             $table->foreignId('idTipoTratamiento');
             $table->foreignId('idMascota');
             $table->foreignId('idVeterinario');
