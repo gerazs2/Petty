@@ -10,12 +10,12 @@ class Usuario extends Model
      * La tabla asociada con el modelo
      * @var string
      */
-    protected $table = 'users';
+    protected $table = 'usuarios';
     /**
      * La llave primaria asociada conla tabla
      * @var string
      */
-    protected $primaryKey = 'id';
+    protected $primaryKey = 'id_usuario';
     /**
      * Indica si el ID es autoincrementable.
      *
@@ -34,7 +34,7 @@ class Usuario extends Model
      *
      * @var bool
      */
-    public $timestamps = false;
+    public $timestamps = true;
 
     /**
      * El formato de almacenamiento de las columnas fecha del modelo.
@@ -47,15 +47,15 @@ class Usuario extends Model
      * En caso de ser necesario cambiar los valores por default para las marcas de tiempo.
      *   Es decir, cambiar el nombre de los campos created_at y updated_At
      */
-    const CREATED_AT = 'creation_date';
-    const UPDATED_AT = 'last_update';
+    const CREATED_AT = 'fecha_creacion';
+    const UPDATED_AT = 'ultima_actualizacion';
 
     /**
      * El nombre de la conexión para el modelo.
      *
-     * @var string
+     * @var string|null
      */
-    protected $connection = 'connection-name';
+    protected $connection = 'nombre-conexion';
     /**
      * Valores por default de los atributos del modelo.
      *
@@ -70,7 +70,7 @@ class Usuario extends Model
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['campo1', 'campo2'];
     /**
      * Los atributos que no son asignables en masa, actua como un alista negra, no permitiendo la asignación directa
      * a las columnas proporcionadas. Este campo no puede ser utilizado cuando el atributo $fillable esté ya definido.
@@ -78,7 +78,35 @@ class Usuario extends Model
      *
      * @var array
      */
-    protected $guarded = ['price'];
+    protected $guarded = ['campo1', 'campo2'];
+
+    /**
+     * Las relaciones la carga apresurada (contraria a lazy load) en cada query.
+     *
+     * @var array
+     */
+    protected $with = [];
+
+    /**
+     * El número de modelos que se devuelven por paginación.
+     *
+     * @var int
+     */
+    protected $perPage = 15;
+    
+    /**
+     * Indica si el modelo existe.
+     *
+     * @var bool
+     */
+    public $exists = false;
+
+    /**
+     * Indica si el modelo fue insertado durante el ciclo de vida de la petición actual.
+     *
+     * @var bool
+     */
+    public $wasRecentlyCreated = false;
 
     /**
      * Todo los demás que hay en los modelos son métodos para crear, actualizar, listar, eliminar registros en la base
