@@ -15,7 +15,7 @@ class TablaSepomex extends Migration
     {
         Schema::create('sepomex', function (Blueprint $table) {
             $table->id();
-            $table->integer('cp',5)->unsigned();
+            $table->integer('cp')->unsigned();
             $table->string('asentamiento', 100);
             $table->string('tipoAsentamiento',100);
             $table->string('municipio',100);

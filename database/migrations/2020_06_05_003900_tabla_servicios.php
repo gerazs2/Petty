@@ -16,10 +16,10 @@ class TablaServicios extends Migration
         Schema::create('servicios', function (Blueprint $table) {
             $table->id();
             $table->string('nombreServicio',100);
-            $table->timestamp('horaApertura');
-            $table->timestamp('horaCierre');
-            $table->double('latitud', 3, 7);
-            $table->double('longitud', 3, 7);
+            $table->dateTime('horaApertura');
+            $table->dateTime('horaCierre');
+            $table->double('latitud', 7, 7);
+            $table->double('longitud', 7, 7);
             $table->text('descripcion');
             $table->decimal('precioBase',5,2);
             $table->boolean('servicioContinuo');

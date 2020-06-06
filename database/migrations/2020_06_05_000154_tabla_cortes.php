@@ -23,12 +23,12 @@ class TablaCortes extends Migration
             $table->boolean('facturado');
             $table->text('rutaFactura');
             $table->string('folioFiscal');
-            $table->timestamp('fechaLimitePago');
+            $table->dateTime('fechaLimitePago');
             $table->foreignId('idOrganizacion');
             $table->timestamps();
             $table->softDeletes();
 
-            $table->foreign('idOrganizacion')->references('id')->on('organizacion');
+            $table->foreign('idOrganizacion')->references('id')->on('organizaciones');
         });
     }
 

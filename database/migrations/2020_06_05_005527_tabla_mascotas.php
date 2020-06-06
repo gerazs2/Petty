@@ -19,7 +19,7 @@ class TablaMascotas extends Migration
             $table->date('fechaNacimiento');
             $table->string('raza',50);
             $table->string('color', 20);
-            $table->decimal('peso',2,3 );
+            $table->decimal('peso',3,3 );
             $table->string('tamaño', 60);
             $table->string('sexo', 20);
             $table->text('senParticulares');

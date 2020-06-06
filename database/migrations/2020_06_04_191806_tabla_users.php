@@ -30,7 +30,7 @@ class TablaUsers extends Migration
             $table->softDeletes();
 
             $table->foreign('idTipoUsuario')->references('id')->on('tipoUsuarios');
-            $table->foreign('idDireccion')->references('id')->on('direccion');
+            $table->foreign('idDireccion')->references('id')->on('direcciones');
         });
     }
 

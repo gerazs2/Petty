@@ -17,8 +17,8 @@ class TablaModelosPgo extends Migration
             $table->id();
             $table->string('nombre',50);
             $table->string('descripcion', 250);
-            $table->integer('diasCorte',2)->unsigned();
-            $table->integer('diasLimite',2)->unsigned();
+            $table->integer('diasCorte')->unsigned();
+            $table->integer('diasLimite')->unsigned();
             $table->timestamps();
             $table->softDeletes();
         });

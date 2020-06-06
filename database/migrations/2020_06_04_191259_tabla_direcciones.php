@@ -13,7 +13,7 @@ class TablaDirecciones extends Migration
      */
     public function up()
     {
-        Schema::create('direccion', function (Blueprint $table) {
+        Schema::create('direcciones', function (Blueprint $table) {
             $table->id();
             $table->string('calle',100);
             $table->string('numExt', 30);
@@ -34,6 +34,6 @@ class TablaDirecciones extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('direccion');
+        Schema::dropIfExists('direcciones');
     }
 }
