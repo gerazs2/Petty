@@ -3,22 +3,25 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TipoServicios extends Model
 {
-   //Tabla asociada de la BD
-   protected $table = 'tipoServicios';
+	use SoftDeletes;
 
-   //Atributos
+	//Tabla asociada de la BD
+	protected $table = 'tipoServicios';
 
-   protected $fillable = [
-   
-    'tipoServicio',
-    'descripcion',
-    'tipoServicioEsp',
-    'especializacion'
-
-];  
+	//importamos la clase softDeletes para la eliminacion bandera
+	protected $dates = ['deleted_at'];
+	
+	//Atributos
+	protected $fillable = [
+		'tipoServicio',
+		'descripcion',
+		'tipoServicioEsp',
+		'especializacion'
+	];  
 
 
 }
