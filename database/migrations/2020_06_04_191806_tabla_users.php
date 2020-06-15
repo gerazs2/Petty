@@ -22,10 +22,13 @@ class TablaUsers extends Migration
             $table->string('lastname');
             $table->string('telefono');
             $table->string('fotoPerfil');
-            $table->boolean('verificado');
+
             $table->timestamp('email_verified_at')->nullable();
             $table->foreignId('idTipoUsuario')->unsigned();
             $table->foreignId('idDireccion')->unsigned();
+            $table->boolean('verificado');
+            $table->string('rememberToken');
+            $table->string('verificationToken',40);
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
