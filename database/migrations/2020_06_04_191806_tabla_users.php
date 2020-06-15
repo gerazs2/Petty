@@ -22,6 +22,7 @@ class TablaUsers extends Migration
             $table->string('lastname');
             $table->string('telefono');
             $table->string('fotoPerfil');
+            $table->boolean('verificado');
             $table->timestamp('email_verified_at')->nullable();
             $table->foreignId('idTipoUsuario')->unsigned();
             $table->foreignId('idDireccion')->unsigned();

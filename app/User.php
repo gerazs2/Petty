@@ -11,13 +11,29 @@ class User extends Authenticatable
 {
     use Notifiable, SoftDeletes;
 
+    const USUARIO_VERIFICADO = '1';
+    const USUARIO_NO_VERIFICADO = '0';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'id_usuario','usuario','nombre', 'apellidos','telefono','foto_perfil', 'email', 'contrasena',
+        'username',
+        'nombre',
+        'password',
+        'name',
+        'lastname', 
+        'email', 
+        'contrasena',
+        'telefono',
+        'fotoPerfil',
+        'idTipoUsuario',
+        'idDireccion',
+        'verificado',
+        'rememberToken',
+        'verificationToken'
     ];
 
     //importamos la clase softDeletes para la eliminacion bandera
@@ -29,7 +45,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'contrasena'
+        'contrasena',
+        'verificationToken',
+        'rememberToken'
     ];
 
     /**
@@ -40,4 +58,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function usuarioVerificado(){
+        return $this->verificado == User::USUARIO_VERIFICADO;
+    }
+
+    public static function generarVerificationTOken(){
+        return str_random(40);
+    }
+
+
 }
