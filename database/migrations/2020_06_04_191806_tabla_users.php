@@ -27,7 +27,6 @@ class TablaUsers extends Migration
             $table->foreignId('idTipoUsuario')->unsigned();
             $table->foreignId('idDireccion')->unsigned();
             $table->boolean('verificado');
-            $table->string('rememberToken');
             $table->string('verificationToken',40);
             $table->rememberToken();
             $table->timestamps();
