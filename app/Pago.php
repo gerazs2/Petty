@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Corte;
 use Illuminate\Database\Eloquent\Model;
 
 class Pago extends Model
@@ -24,4 +25,14 @@ class Pago extends Model
     	'statusPasarela',
     	'idCorte'
 	];
+
+    /**
+     * creamos la relacion "muchos a uno" 
+     * primer parametro: la clase del modelo con que se creará la relacion.
+     * segundo parametro: el nombre de la llave foranea de esta clase que hace referencia al 
+                        id del otro modelo.
+     */
+    public function corte(){
+        return $this->belongsTo(Corte::class,'idCorte');
+    }
 }

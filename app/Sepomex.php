@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Direccion;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -25,4 +26,8 @@ class Sepomex extends Model
     	'ciudad',
     	'pais'
     ];
+
+    public function direcciones(){
+        return $this->hasMany(Direccion::class,'idSepomex');
+    }
 }

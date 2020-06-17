@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Mascota;
+use App\Veterinario;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\softDeletes;
 
@@ -25,4 +27,24 @@ class ConsultaMedica extends Model
     	'idMascota',
     	'idVeterinario'
 	];
+
+    /**
+     * creamos la relacion "muchos a uno" 
+     * primer parametro: la clase del modelo con que se creará la relacion.
+     * segundo parametro: el nombre de la llave foranea de esta clase que hace referencia al 
+                        id del otro modelo.
+     */
+    public function mascota(){
+        return $this->belongsTo(Mascota::class,'idMascota');
+    }
+
+    /**
+     * creamos la relacion "muchos a uno" 
+     * primer parametro: la clase del modelo con que se creará la relacion.
+     * segundo parametro: el nombre de la llave foranea de esta clase que hace referencia al 
+                        id del otro modelo.
+     */
+    public function veterinario(){
+        return $this->belongsTo(Veterinario::class,'idVeterinario');
+    }
 }

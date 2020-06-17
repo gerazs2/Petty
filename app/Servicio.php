@@ -2,6 +2,10 @@
 
 namespace App;
 
+use App\Especie;
+use App\SubCategoria;
+use App\TipoServicio;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Servicio extends Model
@@ -28,4 +32,53 @@ class Servicio extends Model
     	'idUsuario',
     	'idSubcategoria'
 	];
+
+    /**
+     * creamos la relacion "muchos a uno" 
+     * primer parametro: la clase del modelo con que se creará la relacion.
+     * segundo parametro: el nombre de la llave foranea de esta clase que hace referencia al 
+                        id del otro modelo.
+     */
+    public function usuario(){
+        return $this->belongsTo(User::class,'idUsuario');
+    }
+
+    /**
+     * creamos la relacion "muchos a uno" 
+     * primer parametro: la clase del modelo con que se creará la relacion.
+     * segundo parametro: el nombre de la llave foranea de esta clase que hace referencia al 
+                        id del otro modelo.
+     */
+    public function subcategoria(){
+        return $this->belongsTo(SubCategoria::class,'idSubcategoria');
+    }
+
+    /**
+     *
+     * creamos la relacion "muchos a muchos"
+     * funcion belongsToMany
+     * primer parametro: la clase del modelo con el que tiene la relacion muchos a muchos
+     * segundo parametro: el nombre de la tabla pivote
+     * tercer parametro: el nombre de la llave foranea de la tabla pivote que hace referencia al id de este modelo
+     * cuarto parametro: el nombre de la llave foranea de la tabla pivote que hace referencia al id del otro modelo
+     */
+    public function tiposServicio(){
+        return $this->belongsToMany(TipoServicio::class, 'servicioTipo', 'idServicio', 'idTipoServicio')
+            ->as('tiposServicio'); // el nombre que recibira el objeto con los registros de la tabla pivote
+    }
+
+
+    /**
+     *
+     * creamos la relacion "muchos a muchos"
+     * funcion belongsToMany
+     * primer parametro: la clase del modelo con el que tiene la relacion muchos a muchos
+     * segundo parametro: el nombre de la tabla pivote
+     * tercer parametro: el nombre de la llave foranea de la tabla pivote que hace referencia al id de este modelo
+     * cuarto parametro: el nombre de la llave foranea de la tabla pivote que hace referencia al id del otro modelo
+     */
+    public function especiesServicio(){
+        return $this->belongsToMany(Especie::class, 'especieServicio', 'idServicio', 'idEspecie')
+            ->as('especiesServicio'); // el nombre que recibira el objeto con los registros de la tabla pivote
+    }
 }

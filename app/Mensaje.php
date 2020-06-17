@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\ServicioContratado;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Schema\softDeletes;
 
@@ -24,4 +26,34 @@ class Mensaje extends Model
     	'idUsuarioReceptor',
     	'idServicioContratado'
 	];
+
+    /**
+     * creamos la relacion "muchos a uno" 
+     * primer parametro: la clase del modelo con que se creará la relacion.
+     * segundo parametro: el nombre de la llave foranea de esta clase que hace referencia al 
+                        id del otro modelo.
+     */
+    public function usuarioEmisor(){
+        return $this->belongsTo(User::class,'idUsuarioEmisor');
+    }
+
+    /**
+     * creamos la relacion "muchos a uno" 
+     * primer parametro: la clase del modelo con que se creará la relacion.
+     * segundo parametro: el nombre de la llave foranea de esta clase que hace referencia al 
+                        id del otro modelo.
+     */
+    public function usuarioReceptor(){
+        return $this->belongsTo(User::class,'idUsuarioReceptor');
+    }
+
+    /**
+     * creamos la relacion "muchos a uno" 
+     * primer parametro: la clase del modelo con que se creará la relacion.
+     * segundo parametro: el nombre de la llave foranea de esta clase que hace referencia al 
+                        id del otro modelo.
+     */
+    public function servicioContratado(){
+        return $this->belongsTo(ServicioContratado::class,'idServicioContratado');
+    }
 }

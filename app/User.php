@@ -2,6 +2,12 @@
 
 namespace App;
 
+use App\Calificacion;
+use App\Direccion;
+use App\Mascota;
+use App\Organizacion;
+use App\TipoUsuario;
+use App\Veterinario;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -67,5 +73,127 @@ class User extends Authenticatable
         return str_random(40);
     }
 
+    /**
+     * creamos la relacion "muchos a uno" 
+     * primer parametro: la clase del modelo con que se creará la relacion.
+     * segundo parametro: el nombre de la llave foranea de esta clase que hace referencia al 
+                        id del otro modelo.
+     */
+    public function direccion(){
+        return $this->belongsTo(Direccion::class,'idDireccion');
+    }
+
+    /**
+     * creamos la relacion "muchos a uno" 
+     * primer parametro: la clase del modelo con que se creará la relacion.
+     * segundo parametro: el nombre de la llave foranea de esta clase que hace referencia al 
+                        id del otro modelo.
+     */
+    public function tipoUsuario(){
+        return $this->belongsTo(TipoUsuario::class,'idTipoUsuario');
+    }
+
+    /**
+     *
+     * creamos la relacion "uno a muchos"
+     * primer parametro: la clase del modelo con que se creará la relacion
+     * segundo parametro: el nombre de la llave foranea del otro modelo que hace referencia al 
+     *                  id de este modelo
+     */
+    public function calificacionesCompradores(){
+        return $this->hasMany(Calificacion::class,'idUsuarioContrato');
+    }
+
+    /**
+     *
+     * creamos la relacion "uno a muchos"
+     * primer parametro: la clase del modelo con que se creará la relacion
+     * segundo parametro: el nombre de la llave foranea del otro modelo que hace referencia al 
+     *                  id de este modelo
+     */
+    public function calificacionesPrestadores(){
+        return $this->hasMany(Calificacion::class,'idUsuarioPrestador');
+    }
+
+    /**
+     *
+     * creamos la relacion "uno a muchos"
+     * primer parametro: la clase del modelo con que se creará la relacion
+     * segundo parametro: el nombre de la llave foranea del otro modelo que hace referencia al 
+     *                  id de este modelo
+     */
+    public function mascotas(){
+        return $this->hasMany(Mascota::class,'idUsuario');
+    }
+
+    /**
+     *
+     * creamos la relacion "uno a muchos"
+     * primer parametro: la clase del modelo con que se creará la relacion
+     * segundo parametro: el nombre de la llave foranea del otro modelo que hace referencia al 
+     *                  id de este modelo
+     */
+    public function servicios(){
+        return $this->hasMany(Servicio::class,'idUsuario');
+    }
+
+    /**
+     *
+     * creamos la relacion "uno a muchos"
+     * primer parametro: la clase del modelo con que se creará la relacion
+     * segundo parametro: el nombre de la llave foranea del otro modelo que hace referencia al 
+     *                  id de este modelo
+     */
+    public function serviciosContratados(){
+        return $this->hasMany(ServicioContratado::class,'idUsuarioContrato');
+    }
+
+    /**
+     *
+     * creamos la relacion "uno a muchos"
+     * primer parametro: la clase del modelo con que se creará la relacion
+     * segundo parametro: el nombre de la llave foranea del otro modelo que hace referencia al 
+     *                  id de este modelo
+     */
+    public function mensajesEmisor(){
+        return $this->hasMany(Mensaje::class,'idUsuarioEmisor');
+    }
+
+    /**
+     *
+     * creamos la relacion "uno a muchos"
+     * primer parametro: la clase del modelo con que se creará la relacion
+     * segundo parametro: el nombre de la llave foranea del otro modelo que hace referencia al 
+     *                  id de este modelo
+     */
+    public function mensajesReceptor(){
+        return $this->hasMany(Mensaje::class,'idUsuarioReceptor');
+    }
+
+    /**
+     *
+     * creamos la relacion "uno a muchos"
+     * primer parametro: la clase del modelo con que se creará la relacion
+     * segundo parametro: el nombre de la llave foranea del otro modelo que hace referencia al 
+     *                  id de este modelo
+     */
+    public function veterinarios(){
+        return $this->hasMany(Veterinario::class,'idUsuario');
+    }
+
+    /**
+     *
+     * creamos la relacion "muchos a muchos"
+     * funcion belongsToMany
+     * primer parametro: la clase del modelo con el que tiene la relacion muchos a muchos
+     * segundo parametro: el nombre de la tabla pivote
+     * tercer parametro: el nombre de la llave foranea de la tabla pivote que hace referencia al id de este modelo
+     * cuarto parametro: el nombre de la llave foranea de la tabla pivote que hace referencia al id del otro modelo
+     */
+    public function usuariosOrganizacion(){
+        return $this->belongsToMany(Organizacion::class, 'organizacionUsuario', 'idUsuario', 'idOrganizacion')
+            ->as('usuariosOrganizacion') // el nombre que recibira el objeto con los registros de la tabla pivote
+            ->withPivot('esAdmin'); // indicamos los campos adicionales que tiene la tabla pivote a parte de las llaves foraneas
+    }
 
 }

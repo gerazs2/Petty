@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Tratamiento;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -21,6 +22,8 @@ class TipoTratamiento extends Model
     	'nombre'
     ];
 
-
+    public function tratamientos(){
+    	return $this->hasMany(Tratamiento::class,'idTipoTratamiento');
+    }
 
 }
