@@ -24,8 +24,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Route::apiResource('users', 'User\UserCotroller');
 
 
-// Ruta de Servicio
-Route::resource('servicio','Servicio\ServicioController');
+
 
 //Ruta de Mascota
-Route::resource('mascota','Mascota\MascotaController');
+Route::apiresource('mascota','Mascota\MascotaController');
+//Ruta de servicio
+Route::apiresource('servicio','Servicio\ServicioController');
