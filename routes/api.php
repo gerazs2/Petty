@@ -52,3 +52,15 @@ Route::apiresource('corte','Corte\CorteController');
 Route::apiresource('organizacion','Organizacion\OrganizacionController');
 // Ruta De SubCategoria
 Route::apiresource('subCategoria','SubCategoria\SubCategoriaController');
+// Ruta De Pago
+Route::apiresource('pago','Pago\PagoController');
+// Ruta Modelo Pago
+Route::apiresource('modeloPago','ModeloPago\ModeloPagoController');
+// Ruta Servicio Contratado
+Route::apiresource('servicioContratado','ServicioContratado\ServicioContratadoController');
+// Ruta Tipo Servicio
+Route::apiresource('tipoServicio','TipoServicio\TipoServicioController');
+// Ruta Tipo Tratamiento
+Route::apiresource('tipoTratamiento','TipoTratamiento\TipoTratamientoController');
+// Ruta Veterinario
+Route::apiresource('veterinario','Veterinario\VeterinarioController');
