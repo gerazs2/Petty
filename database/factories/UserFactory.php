@@ -17,6 +17,24 @@ use Illuminate\Support\Str;
 |
 */
 
+/*----------  tipoTratamientos  ----------*/
+
+
+/*----------  permisos  ----------*/
+
+
+
+/*----------  tipoUsuarios  ----------*/
+
+
+/*----------  sepomex  ----------*/
+
+
+
+/*----------  direcciones  ----------*/
+
+/*----------  users  ----------*/
+
 $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
@@ -26,3 +44,46 @@ $factory->define(User::class, function (Faker $faker) {
         'remember_token' => Str::random(10),
     ];
 });
+
+/*----------  modelosPago  ----------*/
+
+
+/*----------  organizacion  ----------*/
+
+/*----------  cortes  ----------*/
+
+/*----------  pagos  ----------*/
+
+/*----------  categorias  ----------*/
+
+/*----------  subcategorias  ----------*/
+
+/*----------  servicios  ----------*/
+
+/*----------  tipoServicios  ----------*/
+
+/*----------  especies  ----------*/
+
+/*----------  mascotas  ----------*/
+
+/*----------  veterinarios  ----------*/
+
+/*----------  tratamientos  ----------*/
+
+/*----------  consultasMedicas  ----------*/
+
+/*----------  serviciosContratados  ----------*/
+
+/*----------  mensajes  ----------*/
+
+/*----------  calificaciones  ----------*/
+
+/*----------  mascotaVeterinario  ----------*/
+
+/*----------  permisosTipo  ----------*/
+
+/*----------  serviciosTipo  ----------*/
+
+/*----------  organizacionUsuario  ----------*/
+
+/*----------  especieServicio  ----------*/
