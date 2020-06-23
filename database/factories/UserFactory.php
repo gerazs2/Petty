@@ -20,12 +20,16 @@ use Illuminate\Support\Str;
 /*----------  tipoTratamientos  ----------*/
 
 
-
 /*----------  permisos  ----------*/
+
+
 
 /*----------  tipoUsuarios  ----------*/
 
+
 /*----------  sepomex  ----------*/
+
+
 
 /*----------  direcciones  ----------*/
 
