@@ -64,3 +64,7 @@ Route::apiresource('tipoServicio','TipoServicio\TipoServicioController');
 Route::apiresource('tipoTratamiento','TipoTratamiento\TipoTratamientoController');
 // Ruta Veterinario
 Route::apiresource('veterinario','Veterinario\VeterinarioController');
+// Ruta tipoUsuario
+Route::apiresource('tipoUsuario','TipoUsuario\TipoUsuarioController');
+// Ruta Sepomex
+Route::apiresource('sepomex','Sepomex\SepomexController');
