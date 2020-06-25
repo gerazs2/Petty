@@ -13,16 +13,6 @@ class CategoriaSeeder extends Seeder
      */
     public function run()
     {
-        $date = new DateTime();
-        for ($i = 0; $i < 20; $i++) {
-            DB::table('categorias')->insert([
-                'id' => ($i + 1),
-                'nombreCategoria' => 'nombreCat-' . Str::random(10),
-                'descripcionCategoria' => Str::random(10) . '@gmail.com',
-                'created_at' => $date,
-                'updated_at' => $date,
-                'deleted_at' => null
-            ]);
-        }
+        factory('App\Categoria', 20)->create();
     }
 }
