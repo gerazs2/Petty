@@ -6,7 +6,16 @@ use App\Corte;
 use Illuminate\Database\Eloquent\Model;
 
 class Pago extends Model
-{
+{   
+    const METODO_PAGO_TARJETA = 'Tarjeta';
+    const METODO_PAGO_EFECTIVO = 'Efectivo';
+    const METODO_PAGO_TRANSFERENCIA = 'Transferencia';
+
+    const STATUS_PASARELA_APROVADO = 'Aprovado';
+    const STATUS_PASARELA_RECHAZADO = 'Rechazado';
+    const STATUS_PASARELA_CANCELADO = 'Cancelado';
+
+
     //importamos la clase para la elimiancion virtual
     use softDeletes;
 

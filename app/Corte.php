@@ -9,6 +9,14 @@ use Illuminate\Database\Schema\softDeletes;
 
 class Corte extends Model
 {
+    const STATUS_POR_PAGAR = '0';
+    const STATUS_PAGADO = '1';
+    const STATUS_ATRASADO = '2';
+    const REQUIERE_FACTURA = '1';
+    const NO_REQUIERE_FACTURA = '0';
+    const FACTURA_EMITIDA = '1';
+    const FACTURA_NO_EMITIDA = '0';
+
     //importamos la clase para la elimiancion virtual
     use softDeletes;
 

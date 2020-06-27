@@ -16,7 +16,7 @@ class CategoriaSeeder extends Seeder
         $date = new DateTime();
         for ($i = 0; $i < 20; $i++) {
             DB::table('categorias')->insert([
-                'id' => ($i + 1),
+                //'id' => ($i + 1),
                 'nombreCategoria' => 'nombreCat-' . Str::random(10),
                 'descripcionCategoria' => Str::random(10) . '@gmail.com',
                 'created_at' => $date,

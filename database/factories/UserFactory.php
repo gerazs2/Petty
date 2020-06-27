@@ -2,6 +2,12 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Corte;
+use App\Direccion;
+use App\ModeloPago;
+use App\Organizacion;
+use App\Pago;
+use App\Sepomex;
 use App\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
@@ -17,24 +23,23 @@ use Illuminate\Support\Str;
 |
 */
 
-/*----------  tipoTratamientos  ----------*/
-
-
-/*----------  permisos  ----------*/
-
-
-
-/*----------  tipoUsuarios  ----------*/
-
-
-/*----------  sepomex  ----------*/
-
-
+/*----------  tipoTratamientos usara seeder  ----------*/
+/*----------  permisos usara seeder  ----------*/
+/*----------  tipoUsuarios usara seeder ----------*/
+/*----------  sepomex cargar de sepomex ----------*/
 
 /*----------  direcciones  ----------*/
+$factory->define(Direccion::class, function (Faker $faker) {
+    return [
+        'calle' => $faker->streetName,
+        'numExt' => $faker->randomNumber(3),
+        'numInt' => $faker->optional($weight=0.6, $default=null)->randomElement($array=  array( 'a','b','c','d','e','1','2','3')),
+        'referencia' => $faker->text($maxNbChars= 150),
+        'idSepomex' => Sepomex::inRandomOrder()->first()->id
+    ];
+});
 
 /*----------  users  ----------*/
-
 $factory->define(User::class, function (Faker $faker) {
     return [
         'name' => $faker->name,
@@ -45,24 +50,59 @@ $factory->define(User::class, function (Faker $faker) {
     ];
 });
 
-/*----------  modelosPago  ----------*/
+/*----------  modelosPago usara seeder ----------*/
 
 
 /*----------  organizacion  ----------*/
+$factory->define(Organizacion::class, function (Faker $faker) {
+    return [
+        'nombreOrg' => $faker->company,
+        'emailOrg' => $faker->unique()->freeEmail,
+        'idModeloPago' => ModeloPago::inRandomOrder()->first()->id,
+        'idDireccion' => ModeloPago::inRandomOrder()->first()->id
+    ];
+});
 
-/*----------  cortes  ----------*/
+/*----------  cortes   ----------*/
+$factory->define(Corte::class, function (Faker $faker) {
+	$dateTime=$faker->dateTimeBetween($startDate='-1 years', $endDate= 'now');
+	$requiereFactura= $faker->randomElement([Corte::REQUIERE_FACTURA , Corte::NO_REQUIERE_FACTURA]);
+    return [
+        'fecha' => $dateTime->format('Y-m-d H:i:s'),
+        'periodo' => $dateTime->format('Y-m'),
+        'monto' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 10000),
+        'status' => $faker->randomElement([Corte::STATUS_ATRASADO, Corte::STATUS_PAGADO, Corte::STATUS_POR_PAGAR]),
+        'requiereFactura' => $requiereFactura,
+        'facturado' => ($requiereFactura==Corte::REQUIERE_FACTURA)? $faker->randomElement([Corte::FACTURA_EMITIDA, Corte::FACTURA_NO_EMITIDA]) : Corte::FACTURA_NO_EMITIDA ,
+        'rutaFactura' => 'ND',
+        'folioFiscal' => $faker->unique()->uuid,
+        'fechaLimitePago' => $dateTime->modify('10 days')->format('Y-m-d H:i:s'),
+        'idOrganizacion' => Organizacion::inRandomOrder()->first()->id
+    ];
+});
 
 /*----------  pagos  ----------*/
+$factory->define(Pago::class, function (Faker $faker) {
+	$dateTime=$faker->dateTimeBetween($startDate='-1 years', $endDate= 'now');
+    return [
+        'fecha' => $dateTime->format('Y-m-d H:i:s'),
+        'monto' => $faker->randomFloat($nbMaxDecimals = 2, $min = 0, $max = 10000),
+        'metodoPago' => $faker->randomElement([Pago::METODO_PAGO_EFECTIVO, Pago::METODO_PAGO_TARJETA, Pago::METODO_PAGO_TRANSFERENCIA]),
+        'status' => $faker->randomElement([Pago::STATUS_PASARELA_APROVADO, Pago::STATUS_PASARELA_RECHAZADO, Pago::STATUS_PASARELA_CANCELADO]),
+        'statusPasarela' => $faker->randomElement([Pago::STATUS_PASARELA_APROVADO, Pago::STATUS_PASARELA_RECHAZADO, Pago::STATUS_PASARELA_CANCELADO]),
+        'idCorte' => Corte::inRandomOrder()->first()->id
+    ];
+});
 
-/*----------  categorias  ----------*/
+/*----------  categorias usara seeder  ----------*/
+/*----------  subcategorias usara seeder ----------*/
 
-/*----------  subcategorias  ----------*/
 
 /*----------  servicios  ----------*/
 
-/*----------  tipoServicios  ----------*/
+/*----------  tipoServicios posible no aplica  ----------*/
 
-/*----------  especies  ----------*/
+/*----------  especies no apllica  ----------*/
 
 /*----------  mascotas  ----------*/
 

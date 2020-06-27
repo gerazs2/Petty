@@ -8,6 +8,9 @@ use Illuminate\Database\Schema\softDeletes;
 
 class ModeloPago extends Model
 {
+    
+    
+    
     //importamos la clase para la elimiancion virtual
     use softDeletes;
 
