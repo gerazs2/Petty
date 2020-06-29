@@ -2,14 +2,18 @@
 
 namespace App;
 
+use App\User;
 use App\Especie;
+use App\Categoria;
 use App\SubCategoria;
 use App\TipoServicio;
-use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Servicio extends Model
 {
+    const CON_SERVICIO_CONTINUO = '1';
+    const SIN_SERVICIO_CONTINUO = '0';
+
     //importamos la clase para la elimiancion virtual
     use softDeletes;
 
@@ -52,6 +56,8 @@ class Servicio extends Model
     public function subcategoria(){
         return $this->belongsTo(SubCategoria::class,'idSubcategoria');
     }
+
+    
 
     /**
      *

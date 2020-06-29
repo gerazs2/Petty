@@ -10,7 +10,12 @@ use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class ServicioContratado extends Model
-{
+{   
+    const STATUS_SERVICIO_TERMINADO = 'Terminado';
+    const STATUS_SERVICIO_PENDIENTE = 'Pendiente';
+    const STATUS_SERVICIO_CANCELADO = 'Cancelado';
+    const STATUS_SERVICIO_RECLAMO = 'Reclamo';
+
     use SoftDeletes;
 
 	//la tabla asociada al modelo

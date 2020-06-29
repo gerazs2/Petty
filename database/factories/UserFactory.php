@@ -2,15 +2,27 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
+use App\Pago;
+use App\User;
 use App\Corte;
+use App\Especie;
+use App\Mascota;
+use App\Mensaje;
+use App\Sepomex;
+use App\Servicio;
+use App\Categoria;
 use App\Direccion;
 use App\ModeloPago;
+use App\Tratamiento;
+use App\Veterinario;
+use App\Calificacion;
 use App\Organizacion;
-use App\Pago;
-use App\Sepomex;
-use App\User;
-use Faker\Generator as Faker;
+use App\SubCategoria;
+use App\ConsultaMedica;
+use App\TipoTratamiento;
+use App\ServicioContratado;
 use Illuminate\Support\Str;
+use Faker\Generator as Faker;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,30 +109,140 @@ $factory->define(Pago::class, function (Faker $faker) {
 /*----------  categorias usara seeder  ----------*/
 /*----------  subcategorias usara seeder ----------*/
 
-
 /*----------  servicios  ----------*/
+$factory->define(Servicio::class, function (Faker $faker) {
+    $dateTime=$faker->dateTimeBetween($startDate='-1 years', $endDate= 'now');
+    return [
+        'nombreServicio' => $faker->jobTitle,
+        'horaApertura' => $faker->time($format='H:i'),
+        'horaCierre' => $faker->time($format='H:i'),
+        'descripcion' => $faker->paragraph($nbSentences=1),
+        'precioBase' => $faker->randomFloat($nbMaxDecimals = 2, $min = 100, $max = 5000),
+        'servicioContinuo' => $faker->randomElement([Servicio::CON_SERVICIO_CONTINUO, Servicio::SIN_SERVICIO_CONTINUO]),
+        'idUsuario' => User::inRandomOrder()->first()->id,
+        'idSubcategoria' => SubCategoria::inRandomOrder()->first()->id
+    ];
+});
 
-/*----------  tipoServicios posible no aplica  ----------*/
 
-/*----------  especies no apllica  ----------*/
+/*----------  tipoServicios posible necesario replantear con el equipo  ----------*/
+/*----------  especies usara seeder  ----------*/
 
 /*----------  mascotas  ----------*/
+$factory->define(Mascota::class, function (Faker $faker) {
+    return [
+        'nombreMascota' => $faker->firstName($gender = null),
+        'fechaNacimiento' => $faker->dateTimeBetween($startDate='-5 years', $endDate= 'now')->format('Y-m-d H:i:s'),
+        'raza' => $faker->streetName,
+        'color' => $faker->colorName,
+        'peso' => $faker->randomFloat($nbMaxDecimals = 3, $min = 1, $max = 100),
+        'tamaño' => $faker->randomElement([Mascota::TAMANO_CHICO, Mascota::TAMANO_MEDIANO, Mascota::TAMANO_GRANDE]),
+        'sexo' => $faker->randomElement([Mascota::SEXO_MACHO, Mascota::SEXO_HEMBRA]),
+        'senParticulares' => $faker->sentence($nbWords = 8 , $variableNbWords = true),
+        'idEspecie' => Especie::inRandomOrder()->first()->id,
+        'idUsuario' => User::inRandomOrder()->first()->id
+    ];
+});
+
 
 /*----------  veterinarios  ----------*/
+$factory->define(Veterinario::class, function (Faker $faker) {
+    return [
+        'cedula' => $faker->numerify('CED-###'),
+        'curriculum' => $faker->text($maxNbChars = 550),
+        'titulo' => $faker->jobTitle,
+        'experiencia' => $faker->text($maxNbChars = 550),
+        'universidad' => $faker->company,
+        'idUsuario' => User::inRandomOrder()->first()->id
+    ];
+});
 
 /*----------  tratamientos  ----------*/
+$factory->define(Tratamiento::class, function (Faker $faker) {
+    return [
+        'fechaTratamiento' => $faker->dateTimeBetween($startDate='-5 years', $endDate= 'now')->format('Y-m-d H:i:s'),
+        'nombreTratamiento' => $faker->bs,
+        'etiqueta' => $faker->sentence($nbWords = 8, $variableNbWords = true),
+        'proximoTratamiento' => $faker->dateTimeBetween($startDate='-5 years', $endDate= 'now')->format('Y-m-d H:i:s'),
+        'idTipoTratamiento' => TipoTratamiento::inRandomOrder()->first()->id,
+        'idMascota' => Mascota::inRandomOrder()->first()->id,
+        'idVeterinario' => Veterinario::inRandomOrder()->first()->id
+    ];
+});
 
 /*----------  consultasMedicas  ----------*/
+$factory->define(ConsultaMedica::class, function (Faker $faker) {
+    return [
+        'diagnostico' => $faker->text($maxNbChars = 100),
+        'tratamiento' => $faker->text($maxNbChars = 150),
+        'comentarios' => $faker->sentence($nbWords = 8, $variableNbWords = true),
+        'fechaConsulta' => $faker->dateTimeBetween($startDate='-5 years', $endDate= 'now')->format('Y-m-d H:i:s'),
+        'idMascota' => Mascota::inRandomOrder()->first()->id,
+        'idVeterinario' => Veterinario::inRandomOrder()->first()->id
+    ];
+});
+
 
 /*----------  serviciosContratados  ----------*/
+$factory->define(ServicioContratado::class, function (Faker $faker) {
+    return [
+        'nombreServicio' => $faker->sentence($nbWords = 8, $variableNbWords = true),
+        'descripcion' => $faker->text($maxNbChars = 350),
+        'precioBase' => $faker->randomFloat($nbMaxDecimals = 2, $min = 100, $max = 5000),
+        'observacinesFinales' => $faker->paragraph($nbSentences=1),
+        'statusServicio' => $faker->randomElement([
+            ServicioContratado::STATUS_SERVICIO_TERMINADO, 
+            ServicioContratado::STATUS_SERVICIO_PENDIENTE,
+            ServicioContratado::STATUS_SERVICIO_CANCELADO,
+            ServicioContratado::STATUS_SERVICIO_RECLAMO
+        ]),
+        'costoFinal' => $faker->randomFloat($nbMaxDecimals = 2, $min = 100, $max = 5000),
+        'fechaContrato' => $faker->dateTimeBetween($startDate='-5 years', $endDate= 'now')->format('Y-m-d H:i:s'),
+        'fechaTermino' => $faker->dateTimeBetween($startDate='-5 years', $endDate= 'now')->format('Y-m-d H:i:s'),
+        'fechaEjecucion' => $faker->dateTimeBetween($startDate='-5 years', $endDate= 'now')->format('Y-m-d H:i:s'),
+        'idUsuarioContrato' => User::inRandomOrder()->first()->id,
+        'idMascota' => Mascota::inRandomOrder()->first()->id,
+        'idSubcategoria' => SubCategoria::inRandomOrder()->first()->id
+    ];
+});
 
 /*----------  mensajes  ----------*/
+$factory->define(Mensaje::class, function (Faker $faker) {
+    return [
+        'idUsuarioEmisor' => User::inRandomOrder()->first()->id,
+        'idUsuarioReceptor' => User::inRandomOrder()->first()->id,
+        'idServicioContratado' => ServicioContratado::inRandomOrder()->first()->id,
+        'mensaje' => $faker->paragraph($nbSentences=3),
+        'fechaEnvio' => $faker->dateTimeBetween($startDate='-5 years', $endDate= 'now')->format('Y-m-d H:i:s')
+    ];
+});
 
 /*----------  calificaciones  ----------*/
+$factory->define(Calificacion::class, function (Faker $faker) {
+    return [
+        'calificacion' => $faker->numberBetween($min = 1, $max = 5),
+        'comentario' => $faker->text($maxNbChars = 500),
+        'fechaCalificacion' => $faker->dateTimeBetween($startDate='-5 years', $endDate= 'now')->format('Y-m-d H:i:s'),
+        'idServicio' => Servicio::inRandomOrder()->first()->id,
+        'idUsuarioContrato' => User::inRandomOrder()->first()->id,
+        'idUsuarioPrestador' => User::inRandomOrder()->first()->id,
+        'idServicioContratado' => ServicioContratado::inRandomOrder()->first()->id
+    ];
+});
 
 /*----------  mascotaVeterinario  ----------*/
+/*   NO EXISTE MODELO
+$factory->define(Calificacion::class, function (Faker $faker) {
+    return [
+        'idMascota' => Mascota::inRandomOrder()->first()->id,
+        'idVeterinario' => Veterinario::inRandomOrder()->first()->id,
+        'puedeEditar' => $faker->randomElement([true, false])
+    ];
+});
+*/
 
 /*----------  permisosTipo  ----------*/
+
 
 /*----------  serviciosTipo  ----------*/
 

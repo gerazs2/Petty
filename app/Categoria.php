@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Servicio;
 use App\SubCategoria;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -32,6 +33,8 @@ class Categoria extends Model
      *                  id de este modelo
      */
 	public function subcategorias(){
-		return $this->hasMany(SubCategoria::class,'ídCategoria');
+		return $this->hasMany(SubCategoria::class,'idCategoria');
 	}
+
+	
 }

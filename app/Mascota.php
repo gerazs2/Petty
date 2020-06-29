@@ -11,6 +11,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Mascota extends Model
 {
+    const TAMANO_CHICO = 'Chico';
+    const TAMANO_MEDIANO = 'Mediano';
+    const TAMANO_GRANDE = 'Grande';
+
+    const SEXO_MACHO = 'Macho';
+    const SEXO_HEMBRA = 'Hembra';
+
     use SoftDeletes;
 
     //Tabla asociada de la BD

@@ -21,7 +21,7 @@ class CategoriasSeeder extends Seeder
         ]);
 
         DB::table('categorias')->insert([
-            'nombreCategoria' => 'Estica y belleza',
+            'nombreCategoria' => 'Estetica y belleza',
             'descripcionCategoria' => 'Para servicios como cortes, baños, limpieza dental, spa, etc.',
             'created_at' => $date
         ]);
