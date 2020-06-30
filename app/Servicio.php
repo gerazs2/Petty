@@ -8,6 +8,7 @@ use App\Categoria;
 use App\SubCategoria;
 use App\TipoServicio;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\softDeletes;
 
 class Servicio extends Model
 {

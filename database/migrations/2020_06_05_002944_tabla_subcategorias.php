@@ -15,7 +15,7 @@ class TablaSubcategorias extends Migration
     {
         Schema::create('subcategorias', function (Blueprint $table) {
             $table->id();
-            $table->string('nombreSubCat',20);
+            $table->string('nombreSubCat',50);
             $table->string('descripcionSubCat',150);
             $table->foreignId('idCategoria');
             $table->timestamps();

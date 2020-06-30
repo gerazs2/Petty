@@ -24,4 +24,5 @@ class CategoriaSeeder extends Seeder
                 'deleted_at' => null
             ]);
         }
+    }
 }

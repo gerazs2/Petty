@@ -40,7 +40,7 @@ class SubcategoriasSeeder extends Seeder
         DB::table('subcategorias')->insert([
             'nombreSubCat' => 'Rehabilitación',
             'descripcionSubCat' => 'Rehabilitaciones para mascotas',
-            'idCategoria' => 'Para servicios como consultas médicas, cirugías, rehabilitaciones, etc.',
+            'idCategoria' => $idCategoriaServicioMedico,
             'created_at' => $date
         ]);
 

@@ -3,9 +3,10 @@
 namespace App;
 
 use App\Mascota;
-use App\TipoTratamiento;
 use App\Veterinario;
+use App\TipoTratamiento;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Tratamiento extends Model
 {

@@ -1,5 +1,6 @@
 <?php
 
+use App\Permiso;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -32,5 +33,8 @@ class TipoUsuariosSeeder extends Seeder
             'descripcionUsuario' => 'Cuenta creada unicamente para contratar los servicios ofrecidos en la aplicacion',
             'created_at' => $date
         ]);
+
+
+        
     }
 }

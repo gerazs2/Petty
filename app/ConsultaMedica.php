@@ -5,12 +5,12 @@ namespace App;
 use App\Mascota;
 use App\Veterinario;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Schema\softDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ConsultaMedica extends Model
 {
     //importamos la clase para la elimiancion virtual
-    use softDeletes;
+    use SoftDeletes;
 
     //hacemos referencia a la tabla que corresponde el modelo
     protected $table = 'consultasMedicas';

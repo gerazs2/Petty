@@ -2,12 +2,13 @@
 
 namespace App;
 
-use App\ConsultaMedica;
-use App\Especie;
-use App\ServicioContratado;
-use App\Tratamiento;
 use App\User;
+use App\Especie;
+use App\Tratamiento;
+use App\ConsultaMedica;
+use App\ServicioContratado;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Mascota extends Model
 {

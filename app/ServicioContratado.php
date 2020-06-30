@@ -2,12 +2,13 @@
 
 namespace App;
 
-use App\Calificacion;
+use App\User;
 use App\Mascota;
 use App\Mensaje;
+use App\Calificacion;
 use App\SubCategoria;
-use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ServicioContratado extends Model
 {   

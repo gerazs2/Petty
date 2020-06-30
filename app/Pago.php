@@ -4,6 +4,7 @@ namespace App;
 
 use App\Corte;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\softDeletes;
 
 class Pago extends Model
 {   

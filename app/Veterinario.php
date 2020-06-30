@@ -5,7 +5,7 @@ namespace App;
 use App\Mascota;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Schema\softDeletes;
+use Illuminate\Database\Eloquent\softDeletes;
 
 class Veterinario extends Model
 {

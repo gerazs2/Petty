@@ -3267,6 +3267,7 @@ class ComposerStaticInit24d83f4666760ff46d5fc59049b9ba4b
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PermisosSeeder' => __DIR__ . '/../..' . '/database/seeds/PermisosSeeder.php',
+        'PermisosTipoUsuarioSeeder' => __DIR__ . '/../..' . '/database/seeds/PermisosTipoUsuarioSeeder.php',
         'PharIo\\Manifest\\Application' => __DIR__ . '/..' . '/phar-io/manifest/src/values/Application.php',
         'PharIo\\Manifest\\ApplicationName' => __DIR__ . '/..' . '/phar-io/manifest/src/values/ApplicationName.php',
         'PharIo\\Manifest\\Author' => __DIR__ . '/..' . '/phar-io/manifest/src/values/Author.php',

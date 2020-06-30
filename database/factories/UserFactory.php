@@ -45,7 +45,7 @@ $factory->define(Direccion::class, function (Faker $faker) {
     return [
         'calle' => $faker->streetName,
         'numExt' => $faker->randomNumber(3),
-        'numInt' => $faker->optional($weight=0.6, $default=null)->randomElement($array=  array( 'a','b','c','d','e','1','2','3')),
+        'numInt' => $faker->optional($weight=0.6, $default='')->randomElement($array=  array( 'a','b','c','d','e','1','2','3')),
         'referencia' => $faker->text($maxNbChars= 150),
         'idSepomex' => Sepomex::inRandomOrder()->first()->id
     ];

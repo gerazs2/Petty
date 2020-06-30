@@ -2,9 +2,10 @@
 
 namespace App;
 
-use App\ServicioContratado;
 use App\User;
+use App\ServicioContratado;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Calificacion extends Model
 {

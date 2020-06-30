@@ -14,7 +14,7 @@ class Organizacion extends Model
     use SoftDeletes;
 
     //Tabla asociada de la BD
-    protected $table = 'organizacion';
+    protected $table = 'organizaciones';
     
     //importamos la clase softDeletes para la eliminacion bandera
     protected $dates = ['deleted_at'];
