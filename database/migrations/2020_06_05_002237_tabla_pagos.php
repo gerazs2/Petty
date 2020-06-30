@@ -15,7 +15,7 @@ class TablaPagos extends Migration
     {
         Schema::create('pagos', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('fecha');
+            $table->dateTime('fecha');
             $table->decimal('monto', 8, 2);
             $table->string('metodoPago', 20);
             $table->string('status',20);

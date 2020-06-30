@@ -21,7 +21,7 @@ class TablaServicios extends Migration
             $table->double('latitud', 7, 7);
             $table->double('longitud', 7, 7);
             $table->text('descripcion');
-            $table->decimal('precioBase',5,2);
+            $table->decimal('precioBase',7,2);
             $table->boolean('servicioContinuo');
             $table->foreignId('idUsuario');
             $table->foreignId('idSubcategoria');

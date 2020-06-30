@@ -18,7 +18,7 @@ class TablaMensajes extends Migration
             $table->foreignId('idUsuarioEmisor');
             $table->foreignId('idUsuarioReceptor');
             $table->foreignId('idServicioContratado');
-            $table->string('mensaje');
+            $table->string('mensaje',500);
             $table->timestamp('fechaEnvio');
             $table->timestamps();
             $table->softDeletes();

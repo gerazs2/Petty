@@ -17,10 +17,10 @@ class TablaServiciosContratados extends Migration
             $table->id();
             $table->string('nombreServicio',100);
             $table->text('descripcion');
-            $table->decimal('precioBase',5,2);
+            $table->decimal('precioBase',7,2);
             $table->string('observacinesFinales',250);
             $table->string('statusServicio',20);
-            $table->decimal('costoFinal',5,2);
+            $table->decimal('costoFinal',7,2);
             $table->dateTime('fechaContrato');
             $table->dateTime('fechaTermino');
             $table->dateTime('fechaEjecucion');

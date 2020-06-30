@@ -15,7 +15,7 @@ class TablaCortes extends Migration
     {
         Schema::create('cortes', function (Blueprint $table) {
             $table->id();
-            $table->timestamp('fecha');
+            $table->dateTime('fecha');
             $table->string('periodo');
             $table->decimal('monto', 8,2);
             $table->string('status',20);

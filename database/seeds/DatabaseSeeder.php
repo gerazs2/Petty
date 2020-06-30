@@ -90,34 +90,35 @@ class DatabaseSeeder extends Seeder
          */
         
         factory(Direccion::class, 100)->create(); 
-        factory(User::class, 50)->create();
-        factory(Organizacion::class, 100)->create()->each(
+        factory(User::class, 100)->create();
+        factory(Organizacion::class, 80)->create()->each(
             function($organizacion){
                 $usuarios = User::all()->random(mt_rand(1, 3))->pluck('id'); //obtenemos un numero aleatorio de colecciones de mascotas para relacionarlos con el registro del veterinario
                 $esAdmin = mt_rand(0,1) == 1;
                 $organizacion->usuariosOrganizacion()->attach($usuarios, ['esAdmin' => $esAdmin]); //insertamos las relaciones en la tabla pivote
             }
         );
-        factory(Corte::class, 100)->create();
-        factory(Pago::class, 100)->create();
+        factory(Corte::class, 150)->create();
+        factory(Pago::class, 120)->create();
         factory(Servicio::class, 100)->create()->each(
             function($servicio){
                 $especies = Especie::all()->random(mt_rand(1,3))->pluck('id');
                 $servicio->especiesServicio()->attach($especies);
             }
         );
-        factory(Mascota::class, 100)->create();
-        factory(Veterinario::class, 100)->create()->each(
+        factory(Mascota::class, 150)->create();
+        factory(Veterinario::class, 80)->create()->each(
             function($veterinario){// se ejecuta esta funcion cada vez que se inserta un registro devolviendo el registro insertado como tal
                 $mascotas = Mascota::all()->random(mt_rand(1, 5))->pluck('id'); //obtenemos un numero aleatorio de colecciones de mascotas para relacionarlos con el registro del veterinario
-                $veterinario->permisoVeterinarios()->attach($mascotas); //insertamos las relaciones en la tabla pivote
+                $puedeEditar = mt_rand(0,1) == 1;
+                $veterinario->permisoVeterinarios()->attach($mascotas, ['puedeEditar' => $puedeEditar]); //insertamos las relaciones en la tabla pivote
             }
         );
         factory(Tratamiento::class, 100)->create();
-        factory(ConsultaMedica::class, 100)->create();
-        factory(ServicioContratado::class, 100)->create();
+        factory(ConsultaMedica::class, 150)->create();
+        factory(ServicioContratado::class, 150)->create();
         factory(Mensaje::class, 100)->create();
-        factory(Calificacion::class, 100)->create();
+        factory(Calificacion::class, 150)->create();
 
 
 

@@ -2,16 +2,17 @@
 
 namespace App;
 
-use App\Calificacion;
-use App\Direccion;
 use App\Mascota;
-use App\Organizacion;
+use App\Direccion;
 use App\TipoUsuario;
 use App\Veterinario;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Calificacion;
+use App\Organizacion;
+use Illuminate\Support\Str;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -69,8 +70,8 @@ class User extends Authenticatable
         return $this->verificado == User::USUARIO_VERIFICADO;
     }
 
-    public static function generarVerificationTOken(){
-        return str_random(40);
+    public static function generarVerificationToken(){
+        return Str::random(40);
     }
 
     /**

@@ -13,6 +13,7 @@ use App\Servicio;
 use App\Categoria;
 use App\Direccion;
 use App\ModeloPago;
+use App\TipoUsuario;
 use App\Tratamiento;
 use App\Veterinario;
 use App\Calificacion;
@@ -54,11 +55,19 @@ $factory->define(Direccion::class, function (Faker $faker) {
 /*----------  users  ----------*/
 $factory->define(User::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
-        'remember_token' => Str::random(10),
+        'username' => $faker->unique()->name,
+        'password' => bcrypt('secret'),
+        'name' => $faker->name, // password
+        'lastname' => $faker->lastname,
+        'telefono' => $faker->phoneNumber,
+        'fotoPerfil' => $faker->text($maxNbChars = 150),
+        'email_verified_at' => $faker->randomElement([$faker->dateTimeBetween($startDate='-1 years', $endDate= 'now')->format('Y-m-d H:i:s') , null]),
+        'idTipoUsuario' => TipoUsuario::inRandomOrder()->first()->id,
+        'idDireccion' => Direccion::inRandomOrder()->first()->id,
+        'verificado' => $faker->randomElement([User::USUARIO_VERIFICADO, User::USUARIO_NO_VERIFICADO]),
+        'verificationToken' => User::generarVerificationToken(),
+        'remember_token' => Str::random(40),
     ];
 });
 
@@ -69,6 +78,7 @@ $factory->define(User::class, function (Faker $faker) {
 $factory->define(Organizacion::class, function (Faker $faker) {
     return [
         'nombreOrg' => $faker->company,
+        'rfc' => $faker->unique()->numerify('RFC-#########'),
         'emailOrg' => $faker->unique()->freeEmail,
         'idModeloPago' => ModeloPago::inRandomOrder()->first()->id,
         'idDireccion' => ModeloPago::inRandomOrder()->first()->id
@@ -118,6 +128,8 @@ $factory->define(Servicio::class, function (Faker $faker) {
         'horaCierre' => $faker->time($format='H:i'),
         'descripcion' => $faker->paragraph($nbSentences=1),
         'precioBase' => $faker->randomFloat($nbMaxDecimals = 2, $min = 100, $max = 5000),
+        'latitud' => 0,
+        'longitud' => 0,
         'servicioContinuo' => $faker->randomElement([Servicio::CON_SERVICIO_CONTINUO, Servicio::SIN_SERVICIO_CONTINUO]),
         'idUsuario' => User::inRandomOrder()->first()->id,
         'idSubcategoria' => SubCategoria::inRandomOrder()->first()->id
@@ -186,7 +198,7 @@ $factory->define(ConsultaMedica::class, function (Faker $faker) {
 /*----------  serviciosContratados  ----------*/
 $factory->define(ServicioContratado::class, function (Faker $faker) {
     return [
-        'nombreServicio' => $faker->sentence($nbWords = 8, $variableNbWords = true),
+        'nombreServicio' => $faker->jobTitle,
         'descripcion' => $faker->text($maxNbChars = 350),
         'precioBase' => $faker->randomFloat($nbMaxDecimals = 2, $min = 100, $max = 5000),
         'observacinesFinales' => $faker->paragraph($nbSentences=1),
@@ -212,7 +224,7 @@ $factory->define(Mensaje::class, function (Faker $faker) {
         'idUsuarioEmisor' => User::inRandomOrder()->first()->id,
         'idUsuarioReceptor' => User::inRandomOrder()->first()->id,
         'idServicioContratado' => ServicioContratado::inRandomOrder()->first()->id,
-        'mensaje' => $faker->paragraph($nbSentences=3),
+        'mensaje' => $faker->text($maxNbChars = 500),
         'fechaEnvio' => $faker->dateTimeBetween($startDate='-5 years', $endDate= 'now')->format('Y-m-d H:i:s')
     ];
 });
