@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Calificacion;
 
-use App\Http\Controllers\Controller;
+use App\Calificacion;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class CalificacionController extends Controller
 {
@@ -15,6 +16,9 @@ class CalificacionController extends Controller
     public function index()
     {
         //
+        $calificaciones = Calificacion::all();
+        return $this->showAll($calificaciones, Controller::MESSAGE_OK_, Controller::CODE_OK );
+        
     }
 
     /**
@@ -25,7 +29,9 @@ class CalificacionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $campos = $request->all();
+
     }
 
     /**
@@ -37,6 +43,7 @@ class CalificacionController extends Controller
     public function show($id)
     {
         //
+
     }
 
     /**
