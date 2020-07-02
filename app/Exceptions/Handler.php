@@ -4,9 +4,16 @@ namespace App\Exceptions;
 
 use Throwable;
 use App\Traits\ApiResponser;
+use Illuminate\Database\QueryException;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Exception\MethodNotAllowedException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -61,7 +68,33 @@ class Handler extends ExceptionHandler
             $modelo = strtolower(class_basename($exception->getModel()));
             return $this->errorResponse("No existe ningun registro de {$modelo} con el id especificado", 404);
         }
-        return parent::render($request, $exception);
+
+        if($exception instanceof AuthenticationException){
+            return $this->unauthenticated($request, $exception);
+        }
+
+        if($exception instanceof AuthorizationException){
+            return $this->errorResponse("No posee los permisos para realizar esta acción.", 403);
+        }
+
+        if($exception instanceof NotFoundHttpException){
+            return $this->errorResponse("No se encontró la URL especificada.", 404);
+        }
+
+        if($exception instanceof MethodNotAllowedHttpException){
+            return $this->errorResponse("El método especificado en la petición no es válido.", 404);
+        }
+
+        if($exception instanceof HttpException){
+            return $this->errorResponse($exception->getMessage(),$exception->getStatusCode());
+        }
+
+        if($exception instanceof QueryException){
+            return $this->errorResponse('Codigo de error en la consulta: '.$exception->errorInfo[1],409);
+        }
+
+         return $this->errorResponse('Ocurrió un error inesperado. Intenta nuevamente.',500);
+        //return parent::render($request, $exception);
     }
 
     /**
@@ -74,15 +107,19 @@ class Handler extends ExceptionHandler
     
     protected function convertValidationExceptionToResponse(ValidationException $e, $request)
     {
-        
-        /*
-        return response()->json([
-            'message' => $exception->getMessage(),
-            'errors' => $exception->errors(),
-        ], $exception->status);
-        */
-        
         return $this->errorResponse($e->errors(),$e->status );
+    }
+
+    /**
+     * Convert an authentication exception into a response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Auth\AuthenticationException  $exception
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return $this->errorResponse($exception->getMessage(),401 );
     }
     
 }
