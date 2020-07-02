@@ -37,7 +37,7 @@ trait ApiResponser
 		);
 	}
 
-	protected function showOne(Model $instance, $message = 'ok', $code=200){
+	protected function showOne( $instance, $message = 'ok', $code=200){
 		return $this->successResponse(
 			[
 				'data'    => $instance, 

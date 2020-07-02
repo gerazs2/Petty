@@ -52,6 +52,9 @@ class CalificacionController extends Controller
     public function show($id)
     {
         //
+        $calificacion = Calificacion::findOrFail($id);
+        //echo json_encode(  $calificacion );
+        return $this->showOne($calificacion, Controller::MESSAGE_OK_, Controller::CODE_OK );
 
     }
 
@@ -65,6 +68,42 @@ class CalificacionController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $calificacion = Calificacion::findOrFail($id);
+
+        if($request->has('idServicio')){
+            return $this->errorResponse('No se puede actualizar el campo idServicio', Controller::CODE_BAD_REQUEST);
+        }
+        if($request->has('idUsuarioPrestador')){
+            return $this->errorResponse('No se puede actualizar el campo idUsuarioPrestador', Controller::CODE_BAD_REQUEST);
+        }
+        if($request->has('idServicioContratado')){
+            return $this->errorResponse('No se puede actualizar el campo idServicioContratado', Controller::CODE_BAD_REQUEST);
+        }
+        if($request->has('idUsuarioContrato')){
+            return $this->errorResponse('No se puede actualizar el campo idUsuarioContrato', Controller::CODE_BAD_REQUEST);
+        }
+
+        if($request->has('calificacion')){
+            $calificacion->calificacion = $request->calificacion;
+        }
+
+        if($request->has('comentario')){
+            $calificacion->comentario = $request->comentario;
+        }
+
+        $request->validate([
+            'calificacion' => 'integer',
+            'comentario' => 'string'
+        ]);
+
+        if(!$calificacion->isDirty()){
+            return $this->errorResponse('Se debe especificar al menos un campo diferente para actualizar el registro.', Controller::CODE_BAD_REQUEST);
+        }
+
+        $calificacion->save();
+        //return $this->showOne($calificacion, Controller::MESSAGE_CREATED, Controller::CODE_CREATED);
+        return $this->success($calificacion,Controller::MESSAGE_OK_, Controller::CODE_OK);
     }
 
     /**
@@ -76,5 +115,9 @@ class CalificacionController extends Controller
     public function destroy($id)
     {
         //
+        $calificacion = Calificacion::findOrFail($id);
+        $calificacion->delete();
+        return $this->success($calificacion,Controller::MESSAGE_OK_, Controller::CODE_OK);
+
     }
 }

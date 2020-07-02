@@ -36,13 +36,7 @@ class Controller extends BaseController
     const CODE_CREATED = 201;
     const MESSAGE_CREATED = 'Creación exitosa.';
 
-    /**
-     * se realizó la solicitud de manera satosfactoria pero no se 
-     * encontraron datos para devolver en la respuesta
-     *
-     */
-    const CODE_NO_CONTENT = 204;
-    const MESSAGE_NO_CONTENT = 'No se encontraron registros.';
+    
 
     /**
      * se realizó la solicitud pero ocurrió algún error debido a que no
@@ -68,7 +62,7 @@ class Controller extends BaseController
     const MESSAGE_FORBIDDEN = 'No tiene permisos necesarios. ';
 
     /**
-     * la ruta o destino al que intenta acceder no existe.
+     * la ruta, destino o registro al que intenta acceder no existe.
      */
     const CODE_NOT_FOUND = 404;
     const MESSAGE_NOT_FOUND = 'Ruta o endpoint no encontrado.';
