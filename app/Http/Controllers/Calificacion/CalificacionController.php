@@ -29,9 +29,18 @@ class CalificacionController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $request->validate([
+            'calificacion' => 'required|integer',
+            'comentario' => 'required|string',
+            'idServicio' => 'required|integer',
+            'idUsuarioPrestador' => 'required|integer',
+            'idServicioContratado' => 'required|integer',
+            'idUsuarioContrato' => 'required|integer',
+        ]);
         $campos = $request->all();
-
+        $calificacion = Calificacion::create($campos);
+        //return $this->showOne($calificacion, Controller::MESSAGE_CREATED, Controller::CODE_CREATED);
+        return $this->success($calificacion,Controller::MESSAGE_CREATED, Controller::CODE_CREATED);
     }
 
     /**

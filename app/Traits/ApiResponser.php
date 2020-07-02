@@ -47,4 +47,15 @@ trait ApiResponser
 			$code
 		);
 	}
+
+	protected function success($data, $message = 'ok', $code=200){
+		return $this->successResponse(
+			[
+				'data'    => $data, 
+				'message' => $message, 
+				'code'    => $code
+			], 
+			$code
+		);
+	}
 }

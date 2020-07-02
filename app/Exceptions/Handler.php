@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Throwable;
 use App\Traits\ApiResponser;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class Handler extends ExceptionHandler
@@ -52,6 +53,9 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if($exception instanceof ValidationException){
+            return $this->convertValidationExceptionToResponse($exception, $request);
+        }
         return parent::render($request, $exception);
     }
 
@@ -62,6 +66,7 @@ class Handler extends ExceptionHandler
      * @param  \Illuminate\Http\Request  $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
+    
     protected function convertValidationExceptionToResponse(ValidationException $e, $request)
     {
         
@@ -72,6 +77,7 @@ class Handler extends ExceptionHandler
         ], $exception->status);
         */
         
-        return $this->errorResponse($e->getMessage(),$e->status );
+        return $this->errorResponse($e->errors(),$e->status );
     }
+    
 }
