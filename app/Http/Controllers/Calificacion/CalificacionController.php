@@ -29,6 +29,7 @@ class CalificacionController extends Controller
      */
     public function store(Request $request)
     {
+        // validamos los campos insertados 
         $request->validate([
             'calificacion' => 'required|integer',
             'comentario' => 'required|string',
@@ -37,9 +38,24 @@ class CalificacionController extends Controller
             'idServicioContratado' => 'required|integer',
             'idUsuarioContrato' => 'required|integer',
         ]);
+
+        //creamos una nueva instancia de Calificacion
+        $calificacion= new Calificacion;
+
+        //obtenemos los datos insertados
         $campos = $request->all();
-        $calificacion = Calificacion::create($campos);
-        //return $this->showOne($calificacion, Controller::MESSAGE_CREATED, Controller::CODE_CREATED);
+
+        // asingamos unicamente los campos que se pueden llenar por el cliente
+        $calificacion->calificacion= $campos->calificacion;
+        $calificacion->comentario= $campos->comentario;
+        $calificacion->idServicio= $campos->idServicio;
+        $calificacion->idUsuarioPrestador= $campos->idUsuarioPrestador;
+        $calificacion->idServicioContratado= $campos->idServicioContratado;
+        $calificacion->idUsuarioContrato= $campos->idUsuarioContrato;
+        
+        // guardamos el registro en la DB
+        $calificacion->save();
+
         return $this->success($calificacion,Controller::MESSAGE_CREATED, Controller::CODE_CREATED);
     }
 
@@ -51,11 +67,9 @@ class CalificacionController extends Controller
      */
     public function show($id)
     {
-        //
+        // usamos el metodo findOrFail para devolver un error automatico en caso de no existir el registro
         $calificacion = Calificacion::findOrFail($id);
-        //echo json_encode(  $calificacion );
         return $this->showOne($calificacion, Controller::MESSAGE_OK_, Controller::CODE_OK );
-
     }
 
     /**
@@ -67,10 +81,11 @@ class CalificacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-
+        
+        // Buscamos primeramente si existe el registro
         $calificacion = Calificacion::findOrFail($id);
 
+        // validamos si en los campos insertados se incluyen campos "prohibidos"
         if($request->has('idServicio')){
             return $this->errorResponse('No se puede actualizar el campo idServicio', Controller::CODE_BAD_REQUEST);
         }
@@ -84,6 +99,13 @@ class CalificacionController extends Controller
             return $this->errorResponse('No se puede actualizar el campo idUsuarioContrato', Controller::CODE_BAD_REQUEST);
         }
 
+        // validamos que los datos insertados tengan el formato requerido
+        $request->validate([
+            'calificacion' => 'integer',
+            'comentario' => 'string'
+        ]);
+
+        // se agregan a la instancia los campos que se hayan insertado en la peticion
         if($request->has('calificacion')){
             $calificacion->calificacion = $request->calificacion;
         }
@@ -92,17 +114,14 @@ class CalificacionController extends Controller
             $calificacion->comentario = $request->comentario;
         }
 
-        $request->validate([
-            'calificacion' => 'integer',
-            'comentario' => 'string'
-        ]);
-
+        // comprobamos si la instancia ha tenido algun cambio para ser actualizado
         if(!$calificacion->isDirty()){
             return $this->errorResponse('Se debe especificar al menos un campo diferente para actualizar el registro.', Controller::CODE_BAD_REQUEST);
         }
 
+        // actualizamos el registro
         $calificacion->save();
-        //return $this->showOne($calificacion, Controller::MESSAGE_CREATED, Controller::CODE_CREATED);
+        
         return $this->success($calificacion,Controller::MESSAGE_OK_, Controller::CODE_OK);
     }
 

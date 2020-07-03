@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Categoria extends Model
 {	
-
+	const MAX_NOMBRE_CATEGORIA = 20;
+	const MAX_DESCRIPCION_CATEGORIA = 150;
 	use SoftDeletes;
 
 	//Tabla asociada de la BD
