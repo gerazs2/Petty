@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Mensaje;
 
+
+use App\Mensaje;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +16,9 @@ class MensajeController extends Controller
      */
     public function index()
     {
-        //
+        $mensajes = Mensaje::all();
+        return $this->showAll($mensajes, Controller::MESSAGE_OK_, Controller::CODE_OK );
+        
     }
 
     /**
@@ -25,7 +29,20 @@ class MensajeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $reglas->validate([
+            'idUsuarioEmisor' => 'required|integer',
+            'idUsuarioReceptor' => 'required|integer',
+            'idServicioContratado' => 'required|integer',
+            'mensaje' => 'required|intstringeger'
+        ]);
+
+        $this->validate($request,$reglas); 
+        $campos = $request->all();  
+        $mensajes = Mensaje::create($campos);
+
+        return $this->success($mensajes,Controller::MESSAGE_CREATED, Controller::CODE_CREATED);
+ 
+
     }
 
     /**

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Especie;
 
+use App\Especie;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class EspecieController extends Controller
      */
     public function index()
     {
-        //
+       $especies = Especie::all();
+       return $this->showAll($especies, Controller::MESSAGE_OK_, Controller::CODE_OK );
+        
     }
 
     /**
@@ -25,8 +28,21 @@ class EspecieController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'tipoEspecie' => 'required|string'
+        ]);
+            $this->validate($request);
+            $especies = new Especie;
+     
+            $campo = $request->all();
+       
+            $especies->tipoEspecie= $campo->tipoEspecie;
+      
+            $especies->save();
+
+            return $this->success($especies,Controller::MESSAGE_CREATED, Controller::CODE_CREATED);
+
+        }
 
     /**
      * Display the specified resource.
@@ -36,7 +52,10 @@ class EspecieController extends Controller
      */
     public function show($id)
     {
-        //
+            // usamos el metodo findOrFail para devolver un error automatico en caso de no existir el registro
+            $especies = Especie::findOrFail($id);
+            return $this->showOne($especies, Controller::MESSAGE_OK_, Controller::CODE_OK );
+       
     }
 
     /**
@@ -59,6 +78,9 @@ class EspecieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $especies = Especie::findOrFail($id);
+        $especies->delete();
+        return $this->success($especies,Controller::MESSAGE_OK_, Controller::CODE_OK);
+
     }
 }
