@@ -25,7 +25,7 @@ class Corte extends Model
     protected $table = 'cortes';
 
     //definimos los campos que seran tratados como fechas
-    protected $dates = ['deleted_at', 'fecha'];
+    protected $dates = [ 'fecha'];
 
     //definimos los campos que se podran ingresar al crear el registro
     protected $fillable = [

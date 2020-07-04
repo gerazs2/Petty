@@ -37,7 +37,7 @@ class CategoriaController extends Controller
         $categoria= new Categoria;
 
         //obtenemos los datos insertados
-        $categoria = $request->all();
+        $campos = $request->all();
 
         // asingamos unicamente los campos que se pueden llenar por el cliente
         $categoria->nombreCategoria= $campos->nombreCategoria;

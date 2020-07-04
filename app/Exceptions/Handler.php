@@ -90,7 +90,7 @@ class Handler extends ExceptionHandler
         }
 
         if($exception instanceof QueryException){
-            return $this->errorResponse('Codigo de error en la consulta: '.$exception->errorInfo[1],409);
+            return $this->errorResponse('Codigo de error en la consulta: '.$exception->errorInfo[0],409);
         }
 
          return $this->errorResponse('Ocurrió un error inesperado. Intenta nuevamente.',500);
