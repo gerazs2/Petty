@@ -40,7 +40,7 @@ trait ApiResponser
 	protected function showOne( $instance, $message = 'ok', $code=200){
 		return $this->successResponse(
 			[
-				'data'    => $instance, 
+				'data'    =>  array($instance) , 
 				'message' => $message, 
 				'code'    => $code
 			], 
@@ -51,7 +51,7 @@ trait ApiResponser
 	protected function success($data, $message = 'ok', $code=200){
 		return $this->successResponse(
 			[
-				'data'    => $data, 
+				'data'    => array($data), 
 				'message' => $message, 
 				'code'    => $code
 			], 
