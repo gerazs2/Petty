@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Permiso extends Model
 {
+    const DIM_MAX_NOMBRE_PERMISO = 60;
+    const DIM_MAX_DESCRIPCION_PERMISO = 150;
+
 	use SoftDeletes;
 
 	// definimos el nombre de la tabla asociada al modelo

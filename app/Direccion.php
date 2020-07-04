@@ -10,6 +10,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Direccion extends Model
 {
+    const DIM_MAX_CALLE = 100;
+    const DIM_MAX_NUMEXT = 30;
+    const DIM_MAX_NUMINT = 30;
+    const DIM_MAX_REFERENCIA = 250;
+    
+
     use SoftDeletes;
 
     //tabla asociada al modelo
