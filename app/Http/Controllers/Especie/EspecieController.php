@@ -29,14 +29,12 @@ class EspecieController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tipoEspecie' => 'required|string'
+            'tipoEspecie' => 'required|string',
         ]);
-            $this->validate($request);
+
             $especies = new Especie;
      
-            $campo = $request->all();
-       
-            $especies->tipoEspecie= $campo->tipoEspecie;
+            $especies->tipoEspecie= $request->tipoEspecie;
       
             $especies->save();
 
@@ -67,7 +65,21 @@ class EspecieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $especies = Especie::findOrFail($id);
+
+        if($request->has('tipoEspecie')){
+           
+        $especies->tipoEspecie = $request->tipoEspecie;
+        
+        }
+
+       
+       
+        $especies->save();
+
+        return $this->success($especies,Controller::MESSAGE_OK_, Controller::CODE_OK);
+   
+
     }
 
     /**
