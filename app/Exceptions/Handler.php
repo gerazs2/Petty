@@ -93,8 +93,8 @@ class Handler extends ExceptionHandler
             return $this->errorResponse('Codigo de error en la consulta: '.$exception->errorInfo[0],409);
         }
 
-         return $this->errorResponse( $exception->getMessage() ,500);
-        //return parent::render($request, $exception);
+         return $this->errorResponse($exception->getMessage(),500);
+
     }
 
     /**

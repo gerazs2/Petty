@@ -48,21 +48,21 @@ class CorteController extends Controller
         $campos = $request->all();
 
         // asingamos unicamente los campos que se pueden llenar por el cliente
-        $categoria->fecha= $campos->fecha;
-        $categoria->periodo= $campos->periodo;
-        $categoria->monto= $campos->monto;
-        $categoria->status= $campos->status;
-        $categoria->requiereFactura= $campos->requiereFactura;
-        $categoria->facturado= $campos->facturado;
-        $categoria->rutaFactura= $campos->rutaFactura;
-        $categoria->folioFiscal= $campos->folioFiscal;
-        $categoria->fechaLimitePago= $campos->fechaLimitePago;
-        $categoria->idOrganizacion= $campos->idOrganizacion;
+        $corte->fecha= $campos->fecha;
+        $corte->periodo= $campos->periodo;
+        $corte->monto= $campos->monto;
+        $corte->status= $campos->status;
+        $corte->requiereFactura= $campos->requiereFactura;
+        $corte->facturado= $campos->facturado;
+        $corte->rutaFactura= $campos->rutaFactura;
+        $corte->folioFiscal= $campos->folioFiscal;
+        $corte->fechaLimitePago= $campos->fechaLimitePago;
+        $corte->idOrganizacion= $campos->idOrganizacion;
         
         // guardamos el registro en la DB
-        $categoria->save();
+        $corte->save();
 
-        return $this->success($categoria,Controller::MESSAGE_CREATED, Controller::CODE_CREATED);
+        return $this->success($corte,Controller::MESSAGE_CREATED, Controller::CODE_CREATED);
     }
 
     /**
@@ -74,8 +74,8 @@ class CorteController extends Controller
     public function show($id)
     {
         // usamos el metodo findOrFail para devolver un error automatico en caso de no existir el registro
-        $categoria = Categoria::findOrFail($id);
-        return $this->showOne($categoria, Controller::MESSAGE_OK_, Controller::CODE_OK );
+        $corte = Corte::findOrFail($id);
+        return $this->showOne($corte, Controller::MESSAGE_OK_, Controller::CODE_OK );
     }
 
     /**
