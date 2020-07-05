@@ -44,20 +44,17 @@ class CorteController extends Controller
         //creamos una nueva instancia de Corte
         $corte = new Corte;
 
-        //obtenemos los datos insertados
-        $campos = $request->all();
-
         // asingamos unicamente los campos que se pueden llenar por el cliente
-        $corte->fecha= $campos->fecha;
-        $corte->periodo= $campos->periodo;
-        $corte->monto= $campos->monto;
-        $corte->status= $campos->status;
-        $corte->requiereFactura= $campos->requiereFactura;
-        $corte->facturado= $campos->facturado;
-        $corte->rutaFactura= $campos->rutaFactura;
-        $corte->folioFiscal= $campos->folioFiscal;
-        $corte->fechaLimitePago= $campos->fechaLimitePago;
-        $corte->idOrganizacion= $campos->idOrganizacion;
+        $corte->fecha= $request->fecha;
+        $corte->periodo= $request->periodo;
+        $corte->monto= $request->monto;
+        $corte->status= $request->status;
+        $corte->requiereFactura= $request->requiereFactura;
+        $corte->facturado= $request->facturado;
+        $corte->rutaFactura= $request->rutaFactura;
+        $corte->folioFiscal= $request->folioFiscal;
+        $corte->fechaLimitePago= $request->fechaLimitePago;
+        $corte->idOrganizacion= $request->idOrganizacion;
         
         // guardamos el registro en la DB
         $corte->save();

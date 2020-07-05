@@ -36,12 +36,9 @@ class CategoriaController extends Controller
         //creamos una nueva instancia de Categoria
         $categoria= new Categoria;
 
-        //obtenemos los datos insertados
-        $campos = $request->all();
-
         // asingamos unicamente los campos que se pueden llenar por el cliente
-        $categoria->nombreCategoria= $campos->nombreCategoria;
-        $categoria->descripcionCategoria= $campos->descripcionCategoria;
+        $categoria->nombreCategoria= $request->nombreCategoria;
+        $categoria->descripcionCategoria= $request->descripcionCategoria;
         
         // guardamos el registro en la DB
         $categoria->save();

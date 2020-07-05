@@ -39,15 +39,12 @@ class DireccionController extends Controller
         //creamos una nueva instancia 
         $direccion = new Direccion;
 
-        //obtenemos los datos insertados
-        $campos = $request->all();
-
         // asingamos unicamente los campos que se pueden llenar por el cliente
-        $direccion->calle= $campos->calle;
-        $direccion->numExt= $campos->numExt;
-        $direccion->numInt= $campos->numInt;
-        $direccion->referencia= $campos->referencia;
-        $direccion->idSepomex= $campos->idSepomex;
+        $direccion->calle= $request->calle;
+        $direccion->numExt= $request->numExt;
+        $direccion->numInt= $request->numInt;
+        $direccion->referencia= $request->referencia;
+        $direccion->idSepomex= $request->idSepomex;
         
         // guardamos el registro en la DB
         $direccion->save();

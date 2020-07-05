@@ -36,12 +36,9 @@ class PermisoController extends Controller
         //creamos una nueva instancia 
         $permiso = new Permiso;
 
-        //obtenemos los datos insertados
-        $campos = $request->all();
-
         // asingamos unicamente los campos que se pueden llenar por el cliente
-        $permiso->nombrePermiso= $campos->nombrePermiso;
-        $permiso->descripcionPermiso= $campos->descripcionPermiso;
+        $permiso->nombrePermiso= $request->nombrePermiso;
+        $permiso->descripcionPermiso= $request->descripcionPermiso;
         
         // guardamos el registro en la DB
         $permiso->save();

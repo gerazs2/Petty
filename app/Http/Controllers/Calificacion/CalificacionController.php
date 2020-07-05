@@ -42,16 +42,13 @@ class CalificacionController extends Controller
         //creamos una nueva instancia de Calificacion
         $calificacion= new Calificacion;
 
-        //obtenemos los datos insertados
-        $campos = $request->all();
-
         // asingamos unicamente los campos que se pueden llenar por el cliente
-        $calificacion->calificacion= $campos->calificacion;
-        $calificacion->comentario= $campos->comentario;
-        $calificacion->idServicio= $campos->idServicio;
-        $calificacion->idUsuarioPrestador= $campos->idUsuarioPrestador;
-        $calificacion->idServicioContratado= $campos->idServicioContratado;
-        $calificacion->idUsuarioContrato= $campos->idUsuarioContrato;
+        $calificacion->calificacion= $request->calificacion;
+        $calificacion->comentario= $request->comentario;
+        $calificacion->idServicio= $request->idServicio;
+        $calificacion->idUsuarioPrestador= $request->idUsuarioPrestador;
+        $calificacion->idServicioContratado= $request->idServicioContratado;
+        $calificacion->idUsuarioContrato= $request->idUsuarioContrato;
         
         // guardamos el registro en la DB
         $calificacion->save();

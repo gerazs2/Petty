@@ -31,7 +31,7 @@ class EspecieController extends Controller
         $request->validate([
             'tipoEspecie' => 'required|string'
         ]);
-            $this->validate($request);
+            $this->validate($request); // <<=====
             $especies = new Especie;
      
             $campo = $request->all();
