@@ -29,19 +29,26 @@ class MensajeController extends Controller
      */
     public function store(Request $request)
     {
-        $reglas->validate([
+        $request->validate([
+            'mensaje' => 'required|string',
+            'fechaEnvio'=>'required|date_format:Y-m-d H:i:s',
             'idUsuarioEmisor' => 'required|integer',
             'idUsuarioReceptor' => 'required|integer',
             'idServicioContratado' => 'required|integer',
-            'mensaje' => 'required|intstringeger'
+
         ]);
 
-        $this->validate($request,$reglas); 
-        $campos = $request->all();  
-        $mensajes = Mensaje::create($campos);
+        $mensaje = new Mensaje;
+        
+        $mensaje->mensaje = $request->mensaje;
+        $mensaje->fechaEnvio = $request->fechaEnvio;
+        $mensaje->idUsuarioEmisor = $request->idUsuarioEmisor;
+        $mensaje->idUsuarioReceptor = $request->idUsuarioReceptor;
+        $mensaje->idServicioContratado = $request->idServicioContratado;
 
-        return $this->success($mensajes,Controller::MESSAGE_CREATED, Controller::CODE_CREATED);
- 
+        $mensaje->save();
+
+        return $this->success($mensaje,Controller::MESSAGE_CREATED, Controller::CODE_CREATED);
 
     }
 
@@ -53,7 +60,9 @@ class MensajeController extends Controller
      */
     public function show($id)
     {
-        //
+        $mensaje = Mensaje::findOrFail($id);
+        return $this->showOne($mensaje, Controller::MESSAGE_OK_, Controller::CODE_OK );
+ 
     }
 
     /**
@@ -65,7 +74,7 @@ class MensajeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /** Los mensajes no se deben */
     }
 
     /**
@@ -76,6 +85,9 @@ class MensajeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $mensaje = Mensaje::findOrFail($id);
+        $mensaje->delete();
+        return $this->success($mensaje,Controller::MESSAGE_OK_, Controller::CODE_OK);
+ 
     }
 }

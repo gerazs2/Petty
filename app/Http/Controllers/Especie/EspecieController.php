@@ -67,6 +67,12 @@ class EspecieController extends Controller
     {
         $especies = Especie::findOrFail($id);
 
+
+        $request->validate([
+           'tipoEspecie' => 'string',
+        ]);
+
+
         if($request->has('tipoEspecie')){
            
         $especies->tipoEspecie = $request->tipoEspecie;
