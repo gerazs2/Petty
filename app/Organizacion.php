@@ -11,11 +11,27 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Organizacion extends Model
 {
+    const MAX_NOMBRE_ORGANIZACION = 50;
+    const MAX_EMAIL = 255;
+    const MAX_RFC = 13;
+
+    /**
+     * Reglas de validacion para cada uno de los campos de este modelo
+     */
+
+    const VALIDATION_RULES =  [
+        'nombreOrg' => 'required|string|max:' . Organizacion::MAX_NOMBRE_ORGANIZACION,
+        'emailOrg' => 'required|email|unique:organizaciones|max:' . Organizacion::MAX_EMAIL,
+        'rfc' => 'required|string|max:' . Organizacion::MAX_RFC,
+        'idModeloPago' => 'required|integer|exists:modelosPago,id',
+        'idDireccion' => 'required|integer|exists:direcciones,id',
+    ];
+
     use SoftDeletes;
 
     //Tabla asociada de la BD
     protected $table = 'organizaciones';
-    
+
     //importamos la clase softDeletes para la eliminacion bandera
     protected $dates = ['deleted_at'];
 
@@ -26,7 +42,7 @@ class Organizacion extends Model
         'rfc',
         'idModeloPago',
         'idDireccion'
-    ];  
+    ];
 
     /**
      * creamos la relacion "muchos a uno" 
@@ -34,8 +50,9 @@ class Organizacion extends Model
      * segundo parametro: el nombre de la llave foranea de esta clase que hace referencia al 
                         id del otro modelo.
      */
-    public function modeloPago(){
-        return $this->belongsTo(ModeloPago::class,'idModeloPago');
+    public function modeloPago()
+    {
+        return $this->belongsTo(ModeloPago::class, 'idModeloPago');
     }
 
     /**
@@ -44,8 +61,9 @@ class Organizacion extends Model
      * segundo parametro: el nombre de la llave foranea de esta clase que hace referencia al 
                         id del otro modelo.
      */
-    public function direcicon(){
-        return $this->belongsTo(Direccion::class,'idDireccion');
+    public function direccion()
+    {
+        return $this->belongsTo(Direccion::class, 'idDireccion');
     }
 
     /**
@@ -55,8 +73,9 @@ class Organizacion extends Model
      * segundo parametro: el nombre de la llave foranea del otro modelo que hace referencia al 
      *                  id de este modelo
      */
-    public function cortes(){
-        return $this->hasMany(Corte::class,'idOrganizacion');
+    public function cortes()
+    {
+        return $this->hasMany(Corte::class, 'idOrganizacion');
     }
 
     /**
@@ -68,7 +87,8 @@ class Organizacion extends Model
      * tercer parametro: el nombre de la llave foranea de la tabla pivote que hace referencia al id de este modelo
      * cuarto parametro: el nombre de la llave foranea de la tabla pivote que hace referencia al id del otro modelo
      */
-    public function usuariosOrganizacion(){
+    public function usuariosOrganizacion()
+    {
         return $this->belongsToMany(User::class, 'organizacionUsuario', 'idOrganizacion', 'idUsuario')
             ->as('usuariosOrganizacion') // el nombre que recibira el objeto con los registros de la tabla pivote
             ->withPivot('esAdmin'); // indicamos los campos adicionales que tiene la tabla pivote a parte de las llaves foraneas
