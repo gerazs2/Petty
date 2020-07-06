@@ -13,18 +13,39 @@ class Organizacion extends Model
 {
     const MAX_NOMBRE_ORGANIZACION = 50;
     const MAX_EMAIL = 255;
+    const MIN_RFC = 12;
     const MAX_RFC = 13;
+
+    /**
+     * Strings personalizados para los nombres de los campos
+     */
+    const ATTRIBUTES = [
+        'nombreOrg' => 'Nombre Organizacion',
+        'emailOrg' => 'Correo Electrónico',
+        'rfc' => 'R.F.C.',
+        'idModeloPago' => 'Modelo de Pago',
+        'idDireccion' => 'Dirección'
+    ];
 
     /**
      * Reglas de validacion para cada uno de los campos de este modelo
      */
-
     const VALIDATION_RULES =  [
-        'nombreOrg' => 'required|string|max:' . Organizacion::MAX_NOMBRE_ORGANIZACION,
+        'nombreOrg' => 'required|string|unique:organizaciones|max:' . Organizacion::MAX_NOMBRE_ORGANIZACION,
         'emailOrg' => 'required|email|unique:organizaciones|max:' . Organizacion::MAX_EMAIL,
-        'rfc' => 'required|string|max:' . Organizacion::MAX_RFC,
+        'rfc' => 'required|string|unique:organizaciones|min:' . Organizacion::MIN_RFC . '|max:' . Organizacion::MAX_RFC,
         'idModeloPago' => 'required|integer|exists:modelosPago,id',
         'idDireccion' => 'required|integer|exists:direcciones,id',
+    ];
+    /**
+     * Strings personalizados para los mesajes de error 
+     */
+    const MESSAGES = [
+        'required' => 'El campo :attribute es requerido.',
+        'unique' => 'Este campo :attribute ya ha sido registrado.',
+        'exists' => 'El valor de este campo :attribute no existe.',
+        'min' => 'La longitud debe ser al menos :min caracteres.',
+        'max' => 'La longitud debe ser de no mas de :max caracteres.',
     ];
 
     use SoftDeletes;

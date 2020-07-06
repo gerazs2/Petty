@@ -28,16 +28,17 @@ class OrganizacionController extends Controller
     public function store(Request $request)
     {
         // Validación de los campos recibidos en el Request 
-        $request->validate(Organizacion::VALIDATION_RULES);
+        $request->validate(Organizacion::VALIDATION_RULES, Organizacion::MESSAGES, Organizacion::ATTRIBUTES);
 
         // Creación de una nueva instancia de Organización
         $organizacion = new Organizacion();
 
-        // Asignamosción de los campos que sólo pueden se llenados por el cliente
+        // Asignación de los campos que sólo pueden ser llenados por el cliente
         $organizacion->nombreOrg = $request->nombreOrg;
-        $organizacion->emailOrg = $request->email;
+        $organizacion->emailOrg = $request->emailOrg;
         $organizacion->rfc = $request->rfc;
         $organizacion->idModeloPago = $request->idModeloPago;
+        // TODO Revisar en caso de NUEVAS Direcciones
         $organizacion->idDireccion = $request->idDireccion;
 
         // guardamos el registro en la DB
@@ -77,7 +78,7 @@ class OrganizacionController extends Controller
         }
 
         // Validamos que los datos recibidos en el Request tengan el formato requerido
-        $request->validate(Organizacion::VALIDATION_RULES);
+        $request->validate(Organizacion::VALIDATION_RULES, Organizacion::MESSAGES, Organizacion::ATTRIBUTES);
 
         // Se agregan a la instancia los campos que se hayan recibido en el request
         if ($request->has('nombreOrg')) {
@@ -104,6 +105,7 @@ class OrganizacionController extends Controller
 
         // Guardamos el registro en la BDD
         $organizacion->save();
+
 
         return $this->success($organizacion, Controller::MESSAGE_OK_, Controller::CODE_OK);
     }
