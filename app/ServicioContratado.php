@@ -35,7 +35,7 @@ class ServicioContratado extends Model
         'costoFinal' => 'Costo Final',
         'fechaContrato' => 'Fecha de Contrato',
         'fechaTermino' => 'Fecha de Finalización',
-        'fechaEjecucion' => 'Fecha de Ejecución ',
+        'fechaEjecucion' => 'Fecha de Ejecución',
         'idUsuarioContrato' => 'Usuario Contratado',
         'idMascota' => 'Mascota',
         'idSubcategoria' => 'SubCategoría'

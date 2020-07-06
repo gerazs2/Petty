@@ -46,7 +46,7 @@ class ServicioContratadoController extends Controller
         $servicioContratado->costoFinal = $request->costoFinal;
         $servicioContratado->fechaContrato = $request->fechaContrato;
         $servicioContratado->fechaTermino = $request->fechaTermino;
-        $servicioContratado->fechaEjecución = $request->fechaEjecución;
+        $servicioContratado->fechaEjecucion = $request->fechaEjecucion;
         $servicioContratado->idUsuarioContrato = $request->idUsuarioContrato;
         $servicioContratado->idMascota = $request->idMascota;
         $servicioContratado->idSubcategoria = $request->idSubcategoria;
