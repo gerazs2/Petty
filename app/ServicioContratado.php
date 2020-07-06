@@ -9,6 +9,7 @@ use App\Calificacion;
 use App\SubCategoria;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Validation\Rule;
 
 class ServicioContratado extends Model
 {
@@ -43,6 +44,7 @@ class ServicioContratado extends Model
     /**
      * Reglas de validacion para cada uno de los campos de este modelo
      */
+    // TODO Revisar el required cuando es un UPDATE
     const VALIDATION_RULES =  [
         'nombreServicio' => 'required|string|max:' . ServicioContratado::MAX_NOMBRE_SERVICIO,
         'descripcion' => 'required|string',

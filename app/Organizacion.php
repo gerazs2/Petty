@@ -30,6 +30,7 @@ class Organizacion extends Model
     /**
      * Reglas de validacion para cada uno de los campos de este modelo
      */
+    // TODO Revisar el required cuando es un UPDATE
     const VALIDATION_RULES =  [
         'nombreOrg' => 'required|string|unique:organizaciones|max:' . Organizacion::MAX_NOMBRE_ORGANIZACION,
         'emailOrg' => 'required|email|unique:organizaciones|max:' . Organizacion::MAX_EMAIL,
