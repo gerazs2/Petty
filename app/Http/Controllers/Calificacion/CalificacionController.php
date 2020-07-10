@@ -8,6 +8,13 @@ use App\Http\Controllers\Controller;
 
 class CalificacionController extends Controller
 {
+
+
+    public function __construct(){
+        $this->middleware('client')->only(['show']);
+        $this->middleware('auth:api')->except(['show']);
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -9,6 +9,7 @@ use App\Veterinario;
 use App\Calificacion;
 use App\Organizacion;
 use Illuminate\Support\Str;
+use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -16,7 +17,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes;
+    use Notifiable, SoftDeletes, HasApiTokens;
 
     const USUARIO_VERIFICADO = '1';
     const USUARIO_NO_VERIFICADO = '0';

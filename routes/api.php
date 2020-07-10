@@ -68,3 +68,6 @@ Route::apiresource('veterinario','Veterinario\VeterinarioController');
 Route::apiresource('tipoUsuario','TipoUsuario\TipoUsuarioController');
 // Ruta Sepomex
 Route::apiresource('sepomex','Sepomex\SepomexController');
+
+// Ruta oauth/token para passport
+Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
