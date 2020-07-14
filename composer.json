@@ -16,7 +16,8 @@
         "laravel/homestead": "^10.8",
         "laravel/passport": "^9.3",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.0"
+        "laravel/ui": "^2.0",
+        "santigarcor/laratrust": "^6.1"
     },
     "require-dev": {
         "facade/ignition": "^2.0",

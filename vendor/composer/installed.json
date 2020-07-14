@@ -1273,6 +1273,53 @@
         ]
     },
     {
+        "name": "kkszymanowski/traitor",
+        "version": "0.2.5",
+        "version_normalized": "0.2.5.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/KKSzymanowski/Traitor.git",
+            "reference": "9770fc7de72ff585601dc9c42b31715d9fc40a24"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/KKSzymanowski/Traitor/zipball/9770fc7de72ff585601dc9c42b31715d9fc40a24",
+            "reference": "9770fc7de72ff585601dc9c42b31715d9fc40a24",
+            "shasum": ""
+        },
+        "require": {
+            "nikic/php-parser": "^1.0|^2.0|^3.0|^4.0",
+            "php": ">=5.4"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.1"
+        },
+        "time": "2018-04-19T12:24:36+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Traitor\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Kuba Szymanowski",
+                "email": "kuba.szymanowski@inf24.pl"
+            }
+        ],
+        "description": "Add a trait use statement to existing PHP class",
+        "keywords": [
+            "add",
+            "php",
+            "trait"
+        ]
+    },
+    {
         "name": "laminas/laminas-diactoros",
         "version": "2.3.1",
         "version_normalized": "2.3.1.0",
@@ -4299,6 +4346,79 @@
             "guid",
             "identifier",
             "uuid"
+        ]
+    },
+    {
+        "name": "santigarcor/laratrust",
+        "version": "6.1.1",
+        "version_normalized": "6.1.1.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/santigarcor/laratrust.git",
+            "reference": "fdb0bd92d96098d39e22086afe897af4cb2db432"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/santigarcor/laratrust/zipball/fdb0bd92d96098d39e22086afe897af4cb2db432",
+            "reference": "fdb0bd92d96098d39e22086afe897af4cb2db432",
+            "shasum": ""
+        },
+        "require": {
+            "kkszymanowski/traitor": "^0.2.0",
+            "laravel/framework": "~6.0|~7.0",
+            "php": "^7.2"
+        },
+        "require-dev": {
+            "mockery/mockery": "^1.3.1",
+            "orchestra/testbench": "4.*|5.*",
+            "phpunit/phpunit": "^7.5.15|^8.4|^9.0"
+        },
+        "time": "2020-07-10T14:25:09+00:00",
+        "type": "library",
+        "extra": {
+            "laravel": {
+                "providers": [
+                    "Laratrust\\LaratrustServiceProvider"
+                ],
+                "aliases": {
+                    "Laratrust": "Laratrust\\LaratrustFacade"
+                }
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Laratrust\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Santiago Garcia",
+                "homepage": "http://santigarcor.me"
+            }
+        ],
+        "description": "This package provides a flexible way to add Role-based Permissions to Laravel",
+        "keywords": [
+            "Teams",
+            "acl",
+            "authorization",
+            "laratrust",
+            "laravel",
+            "multiusers",
+            "permissions",
+            "php",
+            "rbac",
+            "roles"
+        ],
+        "funding": [
+            {
+                "url": "https://github.com/santigarcor",
+                "type": "github"
+            }
         ]
     },
     {
