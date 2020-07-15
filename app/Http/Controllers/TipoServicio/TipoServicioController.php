@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class TipoServicioController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('client')->only(['show', 'index']);
+        $this->middleware('auth:api')->except(['show', 'index']);
+    }
+    
     /**
      * Display a listing of the resource.
      *

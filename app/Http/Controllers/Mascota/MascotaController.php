@@ -7,7 +7,12 @@ use Illuminate\Http\Request;
 use App\Mascota;
 
 class MascotaController extends Controller
-{
+{   
+    public function __construct(){
+        //$this->middleware('client')->only(['show']);
+        $this->middleware('auth:api');
+    }
+
     /**
      * Display a listing of the resource.
      *
