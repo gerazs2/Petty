@@ -5,11 +5,10 @@ namespace App\Http\Controllers\Calificacion;
 use App\Calificacion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class CalificacionController extends Controller
 {
-
-
     public function __construct(){
         $this->middleware('client')->only(['show']);
         $this->middleware('auth:api')->except(['show']);
@@ -22,10 +21,16 @@ class CalificacionController extends Controller
      */
     public function index()
     {
-        //
-        $calificaciones = Calificacion::all();
-        return $this->showAll($calificaciones, Controller::MESSAGE_OK_, Controller::CODE_OK );
-        
+        if (Auth::check()){
+            if (Auth::user()->ability('administrador','calificacion-listar', ['validate_all'=> true])){
+                $calificaciones = Calificacion::all();
+                return $this->showAll($calificaciones, Controller::MESSAGE_OK_, Controller::CODE_OK );
+            }else{
+                return $this->errorResponse('No tienes permiso para realizar esta acción', Controller::CODE_FORBIDDEN);
+            }
+        }else{
+            return $this->errorResponse('Credenciales Incorrectas', Controller::CODE_UNAUTHORIZED);
+        }
     }
 
     /**
@@ -85,7 +90,7 @@ class CalificacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         // Buscamos primeramente si existe el registro
         $calificacion = Calificacion::findOrFail($id);
 
