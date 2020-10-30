@@ -26,7 +26,7 @@ class CalificacionController extends Controller
                 $calificaciones = Calificacion::all();
                 return $this->showAll($calificaciones, Controller::MESSAGE_OK_, Controller::CODE_OK );
             }else{
-                return $this->errorResponse('No tienes permiso para realizar esta acción', Controller::CODE_FORBIDDEN);
+                return $this->errorResponse('No tienes permiso para realizar esta acción', Controller::CODE_UNAUTHORIZED);
             }
         }else{
             return $this->errorResponse('Credenciales Incorrectas', Controller::CODE_UNAUTHORIZED);

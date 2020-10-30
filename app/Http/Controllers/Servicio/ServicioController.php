@@ -35,9 +35,9 @@ class ServicioController extends Controller
         //
         // validamos los campos insertados 
         $request -> validate(
-        Servicio::VALIDATION_RULES,
-        Servicio::MESSAGES,
-        Servicio::ATTRIBUTES
+            Servicio::VALIDATION_RULES,
+            Servicio::MESSAGES,
+            Servicio::ATTRIBUTES
         );
         
         //Creación de una nueva instancia de Servicio
@@ -66,8 +66,9 @@ class ServicioController extends Controller
      */
     public function show($id)
     {
+        
         //Usamos el método findOrFail para devolver un error automático en caso de no existir el registro
-        $serv-> = Servicio::findOrFail($id);
+        $serv = Servicio::findOrFail($id);
         return $this->showOne($serv, 
                               Controller::MESSAGE_OK_,       Controller::CODE_OK);
     }

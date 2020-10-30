@@ -98,4 +98,7 @@ class UserController extends Controller
     {
         //
     }
+
+    public function email_exist(Request $request)
+
 }
