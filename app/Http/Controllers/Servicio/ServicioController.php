@@ -69,6 +69,7 @@ class ServicioController extends Controller
         
         //Usamos el método findOrFail para devolver un error automático en caso de no existir el registro
         $serv = Servicio::findOrFail($id);
+        
         return $this->showOne($serv, 
                               Controller::MESSAGE_OK_,       Controller::CODE_OK);
     }

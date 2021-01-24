@@ -99,6 +99,16 @@ class UserController extends Controller
         //
     }
 
-    public function email_exist(Request $request)
+    public function email_exist(Request $request){
+        $request->validate([
+            'cp' => 'required|integer',
+            'asentamiento' => 'required|string',
+            'tipoAsentamiento' => 'required|string',
+            'municipio' => 'required|string',
+            'estado' => 'required|string',
+            'ciudad' => 'required|string',
+            'pais' => 'required|string'
+        ]);
+    }
 
 }
