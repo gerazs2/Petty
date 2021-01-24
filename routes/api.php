@@ -72,6 +72,9 @@ Route::apiresource('sepomex','Sepomex\SepomexController');
 // Ruta oauth/token para passport
 Route::post('oauth/token', '\Laravel\Passport\Http\Controllers\AccessTokenController@issueToken');
 
+//Ruta user/mascota
+Route::apiresource('user.mascota', 'User\UserMascotaController', ['only' =>['index']]);
+
 Route::group([
     'prefix' => 'auth'
 ], function () {
@@ -83,5 +86,6 @@ Route::group([
     ], function() {
         Route::get('logout', 'Auth\AuthController@logout');
         Route::get('user', 'Auth\AuthController@user');
+
     });
 });

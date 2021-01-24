@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
-use App\user;
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -13,9 +13,10 @@ class UserMascotaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        //
+        $mascotas = $user->mascotas;
+        return $this->showOne($mascotas, Controller::MESSAGE_OK_, Controller::CODE_OK);
     }
 
     
