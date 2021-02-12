@@ -84,6 +84,7 @@ class AuthController extends Controller
      */
     public function user(Request $request)
     {
-        return response()->json($request->user());
+        
+        return $this->showOne($request->user(), Controller::MESSAGE_OK_, Controller::CODE_OK);
     }
 }
