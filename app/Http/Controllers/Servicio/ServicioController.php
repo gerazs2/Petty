@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Servicio;
 
-use App\Http\Controllers\Controller;
+use App\Servicio;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ServicioController extends Controller
 {
@@ -20,8 +21,8 @@ class ServicioController extends Controller
     public function index()
     {
         //
-        $servicio = servicio::all();
-        return $this->showAll($servicio, Controller::MESSAGE_OK_, Controller::CODE_OK );
+        $servicios = Servicio::all();
+        return $this->showAll($servicios, Controller::MESSAGE_OK_, Controller::CODE_OK );
     }
 
     /**
