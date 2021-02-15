@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
     {   
         
         /*----------  Vaciamos la DB y deshabilitamos temporalmente la revision de llaves foraneas  ----------*/
+        /*
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Calificacion::truncate();
         Categoria::truncate();
@@ -71,7 +72,7 @@ class DatabaseSeeder extends Seeder
          * se ejecutan los seeders previamente definidos en la carpeta 'database/seeds'
          * pasamos como parametro la clase del Seeder que se pretende ejecutar
          */
-        
+        /*
         $this->call(CategoriasSeeder::class);
         $this->call(EspeciesSeeder::class);
         $this->call(ModelosPagoSeeder::class);
@@ -88,7 +89,7 @@ class DatabaseSeeder extends Seeder
          * segundo parametro: El número de registros que se desean almacenar
          *
          */
-        
+        /*
         factory(Direccion::class, 100)->create(); 
         factory(User::class, 100)->create();
         factory(Organizacion::class, 80)->create()->each(
@@ -100,12 +101,14 @@ class DatabaseSeeder extends Seeder
         );
         factory(Corte::class, 150)->create();
         factory(Pago::class, 120)->create();
-        factory(Servicio::class, 100)->create()->each(
+        */
+        factory(Servicio::class, 10000)->create()->each(
             function($servicio){
                 $especies = Especie::all()->random(mt_rand(1,3))->pluck('id');
                 $servicio->especiesServicio()->attach($especies);
             }
         );
+        /*
         factory(Mascota::class, 150)->create();
         factory(Veterinario::class, 80)->create()->each(
             function($veterinario){// se ejecuta esta funcion cada vez que se inserta un registro devolviendo el registro insertado como tal
@@ -119,7 +122,7 @@ class DatabaseSeeder extends Seeder
         factory(ServicioContratado::class, 150)->create();
         factory(Mensaje::class, 100)->create();
         factory(Calificacion::class, 150)->create();
-
+        */
 
 
     }

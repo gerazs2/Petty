@@ -30,6 +30,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiresource('mascota','Mascota\MascotaController');
 // Ruta de servicio
 Route::apiresource('servicio','Servicio\ServicioController');
+Route::apiresource('servicioByUserMunicipality', 'Servicio\ServicioByUserMunicipalityController', ['only' =>['index']])->middleware('auth:api');
 // Ruta De Calificacion
 Route::apiresource('calificacion','Calificacion\CalificacionController');
 // Ruta De Categoria
