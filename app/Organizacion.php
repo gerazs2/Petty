@@ -88,6 +88,11 @@ class Organizacion extends Model
         return $this->belongsTo(Direccion::class, 'idDireccion');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'idUsuario');
+    }
+
     /**
      *
      * creamos la relacion "uno a muchos"
@@ -100,6 +105,10 @@ class Organizacion extends Model
         return $this->hasMany(Corte::class, 'idOrganizacion');
     }
 
+
+
+
+
     /**
      *
      * creamos la relacion "muchos a muchos"
@@ -108,11 +117,12 @@ class Organizacion extends Model
      * segundo parametro: el nombre de la tabla pivote
      * tercer parametro: el nombre de la llave foranea de la tabla pivote que hace referencia al id de este modelo
      * cuarto parametro: el nombre de la llave foranea de la tabla pivote que hace referencia al id del otro modelo
-     */
+     
     public function usuariosOrganizacion()
     {
         return $this->belongsToMany(User::class, 'organizacionUsuario', 'idOrganizacion', 'idUsuario')
             ->as('usuariosOrganizacion') // el nombre que recibira el objeto con los registros de la tabla pivote
             ->withPivot('esAdmin'); // indicamos los campos adicionales que tiene la tabla pivote a parte de las llaves foraneas
     }
+    */
 }

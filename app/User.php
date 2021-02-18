@@ -185,6 +185,10 @@ class User extends Authenticatable
         return $this->hasMany(Veterinario::class,'idUsuario');
     }
 
+    public function organizacion(){
+        return $this->hasMany(Organizacion::class,'idUsuario');
+    }
+
     /**
      *
      * creamos la relacion "muchos a muchos"
@@ -193,11 +197,12 @@ class User extends Authenticatable
      * segundo parametro: el nombre de la tabla pivote
      * tercer parametro: el nombre de la llave foranea de la tabla pivote que hace referencia al id de este modelo
      * cuarto parametro: el nombre de la llave foranea de la tabla pivote que hace referencia al id del otro modelo
-     */
+     
     public function usuariosOrganizacion(){
         return $this->belongsToMany(Organizacion::class, 'organizacionUsuario', 'idUsuario', 'idOrganizacion')
             ->as('usuariosOrganizacion') // el nombre que recibira el objeto con los registros de la tabla pivote
             ->withPivot('esAdmin'); // indicamos los campos adicionales que tiene la tabla pivote a parte de las llaves foraneas
     }
+    */
 
 }

@@ -105,7 +105,7 @@ trait ApiResponser
 	protected function filterData(Collection $collection){
 		foreach (request()->query() as $query => $value) {
 			//echo json_encode($query);
-			if(isset($value) && ($query!='sort_by' && $query!='per_page')){
+			if(isset($value) && ($query!='sort_by' && $query!='per_page' && $query!='page')){
 				$collection = $collection->where($query, $value);
 			}
 		}

@@ -22,6 +22,7 @@ use App\TipoServicio;
 use App\ConsultaMedica;
 use App\TipoTratamiento;
 use App\ServicioContratado;
+use App\OrganizacionUsuario;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -101,13 +102,14 @@ class DatabaseSeeder extends Seeder
         );
         factory(Corte::class, 150)->create();
         factory(Pago::class, 120)->create();
-        */
+        
         factory(Servicio::class, 10000)->create()->each(
             function($servicio){
                 $especies = Especie::all()->random(mt_rand(1,3))->pluck('id');
                 $servicio->especiesServicio()->attach($especies);
             }
         );
+        */
         /*
         factory(Mascota::class, 150)->create();
         factory(Veterinario::class, 80)->create()->each(
@@ -121,9 +123,19 @@ class DatabaseSeeder extends Seeder
         factory(ConsultaMedica::class, 150)->create();
         factory(ServicioContratado::class, 150)->create();
         factory(Mensaje::class, 100)->create();
-        factory(Calificacion::class, 150)->create();
+        
+        */
+        /*
+        DB::table('users')->insert([
+            'name' => Str::random(10),
+            'email' => Str::random(10).'@gmail.com',
+            'password' => Hash::make('password'),
+        ]);
         */
 
+        
+
+        //factory(OrganizacionUsuario::class, 1000)->create();
 
     }
 }

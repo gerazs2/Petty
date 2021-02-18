@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TablaOrganizacionUsuario extends Migration
+class CreateIdUsuarioColumnOrganizacionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class TablaOrganizacionUsuario extends Migration
      */
     public function up()
     {
-        Schema::create('organizacionUsuario', function (Blueprint $table) {
-            $table->foreignId('idUsuario');
-            $table->foreignId('idOrganizacion');
-            $table->boolean('esAdmin');
-
+        Schema::table('organizaciones', function (Blueprint $table) {
+            //
+            $table->foreignId('idUsuario')->nullable();
             $table->foreign('idUsuario')->references('id')->on('users');
-            $table->foreign('idOrganizacion')->references('id')->on('organizaciones');
         });
     }
 
@@ -30,6 +27,9 @@ class TablaOrganizacionUsuario extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organizacionUsuario');
+        Schema::table('organizaciones', function (Blueprint $table) {
+            //
+            $table->dropColumn('idUsuario');
+        });
     }
 }

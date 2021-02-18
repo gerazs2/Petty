@@ -23,6 +23,7 @@ use App\ConsultaMedica;
 use App\TipoTratamiento;
 use App\ServicioContratado;
 use Illuminate\Support\Str;
+use App\OrganizacionUsuario;
 use Faker\Generator as Faker;
 
 /*
@@ -259,5 +260,6 @@ $factory->define(Calificacion::class, function (Faker $faker) {
 /*----------  serviciosTipo  ----------*/
 
 /*----------  organizacionUsuario  ----------*/
+
 
 /*----------  especieServicio  ----------*/
