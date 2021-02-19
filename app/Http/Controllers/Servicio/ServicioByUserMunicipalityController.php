@@ -38,7 +38,7 @@ class ServicioByUserMunicipalityController extends Controller
                 'subcategorias.nombreSubCat as subcategoria', 
                 'categorias.nombreCategoria as categoria',
                 DB::raw('IFNULL( organizaciones.nombreOrg, "ND") as empresa '),
-                DB::raw('AVG(IFNULL( calificaciones.calificacion, 0)) as calificacion')
+                DB::raw('ROUND(AVG(IFNULL( calificaciones.calificacion, 0)),1) as calificacion')
             )
 
             ->groupBy('servicios.id','organizaciones.id')
