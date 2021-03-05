@@ -92,8 +92,8 @@ class Handler extends ExceptionHandler
         if($exception instanceof QueryException){
             return $this->errorResponse('Codigo de error en la consulta: '.$exception->errorInfo[0],409);
         }
-
-         return $this->errorResponse($exception->getMessage(),500);
+        //echo json_encode($exception);
+        return $this->errorResponse($exception->getMessage(),500);
 
     }
 

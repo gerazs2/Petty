@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 class ServicioController extends Controller
 {
+    
     public function __construct(){
         $this->middleware('client')->only(['show', 'index']);
         $this->middleware('auth:api')->except(['show', 'index']);
@@ -21,7 +22,9 @@ class ServicioController extends Controller
     public function index()
     {
         //
+        //echo "hola";
         $servicios = Servicio::all();
+        //echo json_encode($servicios);
         return $this->showAll($servicios, Controller::MESSAGE_OK_, Controller::CODE_OK );
     }
 
@@ -67,12 +70,9 @@ class ServicioController extends Controller
      */
     public function show($id)
     {
-        
         //Usamos el método findOrFail para devolver un error automático en caso de no existir el registro
         $serv = Servicio::findOrFail($id);
-        
-        return $this->showOne($serv, 
-                              Controller::MESSAGE_OK_,       Controller::CODE_OK);
+        return $this->showOne($serv, Controller::MESSAGE_OK_, Controller::CODE_OK);
     }
 
     /**

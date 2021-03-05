@@ -8,7 +8,7 @@ use App\Categoria;
 use App\SubCategoria;
 use App\TipoServicio;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\softDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Servicio extends Model
 {
@@ -34,6 +34,8 @@ class Servicio extends Model
     	'descripcion',
     	'precioBase',
     	'servicioContinuo',
+        'atiendeDomicilio',
+        'atiendeSucursal',
     	'idUsuario',
     	'idSubcategoria'
 	];

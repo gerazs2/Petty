@@ -38,7 +38,9 @@ class ServicioContratado extends Model
         'fechaEjecucion' => 'Fecha de Ejecución',
         'idUsuarioContrato' => 'Usuario Contratado',
         'idMascota' => 'Mascota',
-        'idSubcategoria' => 'SubCategoría'
+        'idSubcategoria' => 'SubCategoría',
+        'idServicio' => 'id_servicio',
+        'calificado' => 'Calificado',
     ];
 
     /**
@@ -58,6 +60,7 @@ class ServicioContratado extends Model
         'idUsuarioContrato' => 'required|integer|exists:usuarios,id',
         'idMascota' => 'required|integer|exists:mascotas,id',
         'idSubcategoria' => 'required|integer|exists:subcategorias,id',
+        'idServicio' => 'required|integer|exists:servicios,id',
     ];
     /**
      * Strings personalizados para los mesajes de error 
@@ -93,7 +96,9 @@ class ServicioContratado extends Model
         'fechaEjecucion',
         'idUsuarioContrato',
         'idMascota',
-        'idSubcategoria'
+        'idSubcategoria',
+        'idServicio',
+        'calificado'
     ];
 
     /**
