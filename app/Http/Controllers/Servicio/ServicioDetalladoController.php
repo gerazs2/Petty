@@ -85,8 +85,9 @@ class ServicioDetalladoController extends Controller
             ->latest()
             //->toSql();
             ->get();
-        //echo(json_encode($servicio));
-        return $this->showOne($query, Controller::MESSAGE_OK_, Controller::CODE_OK);
+        //echo(json_encode($query));
+        $response= !empty($query)? $query[0]: $query; 
+        return $this->showOne($response, Controller::MESSAGE_OK_, Controller::CODE_OK);
     }
 
     /**

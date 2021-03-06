@@ -32,6 +32,7 @@ return array(
     'App\\Http\\Controllers\\ServicioContratado\\ServicioContratadoController' => $baseDir . '/app/Http/Controllers/ServicioContratado/ServicioContratadoController.php',
     'App\\Http\\Controllers\\Servicio\\ServicioByUserMunicipalityController' => $baseDir . '/app/Http/Controllers/Servicio/ServicioByUserMunicipalityController.php',
     'App\\Http\\Controllers\\Servicio\\ServicioController' => $baseDir . '/app/Http/Controllers/Servicio/ServicioController.php',
+    'App\\Http\\Controllers\\Servicio\\ServicioDetalladoController' => $baseDir . '/app/Http/Controllers/Servicio/ServicioDetalladoController.php',
     'App\\Http\\Controllers\\SubCategoria\\SubCategoriaController' => $baseDir . '/app/Http/Controllers/SubCategoria/SubCategoriaController.php',
     'App\\Http\\Controllers\\TipoServicio\\TipoServicioController' => $baseDir . '/app/Http/Controllers/TipoServicio/TipoServicioController.php',
     'App\\Http\\Controllers\\TipoTratamiento\\TipoTratamientoController' => $baseDir . '/app/Http/Controllers/TipoTratamiento/TipoTratamientoController.php',

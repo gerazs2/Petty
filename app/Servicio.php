@@ -36,6 +36,7 @@ class Servicio extends Model
     	'servicioContinuo',
         'atiendeDomicilio',
         'atiendeSucursal',
+        'activo'
     	'idUsuario',
     	'idSubcategoria'
 	];

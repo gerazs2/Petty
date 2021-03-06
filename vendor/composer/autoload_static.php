@@ -613,6 +613,7 @@ class ComposerStaticInit24d83f4666760ff46d5fc59049b9ba4b
         'App\\Http\\Controllers\\ServicioContratado\\ServicioContratadoController' => __DIR__ . '/../..' . '/app/Http/Controllers/ServicioContratado/ServicioContratadoController.php',
         'App\\Http\\Controllers\\Servicio\\ServicioByUserMunicipalityController' => __DIR__ . '/../..' . '/app/Http/Controllers/Servicio/ServicioByUserMunicipalityController.php',
         'App\\Http\\Controllers\\Servicio\\ServicioController' => __DIR__ . '/../..' . '/app/Http/Controllers/Servicio/ServicioController.php',
+        'App\\Http\\Controllers\\Servicio\\ServicioDetalladoController' => __DIR__ . '/../..' . '/app/Http/Controllers/Servicio/ServicioDetalladoController.php',
         'App\\Http\\Controllers\\SubCategoria\\SubCategoriaController' => __DIR__ . '/../..' . '/app/Http/Controllers/SubCategoria/SubCategoriaController.php',
         'App\\Http\\Controllers\\TipoServicio\\TipoServicioController' => __DIR__ . '/../..' . '/app/Http/Controllers/TipoServicio/TipoServicioController.php',
         'App\\Http\\Controllers\\TipoTratamiento\\TipoTratamientoController' => __DIR__ . '/../..' . '/app/Http/Controllers/TipoTratamiento/TipoTratamientoController.php',
